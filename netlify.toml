@@ -13,3 +13,10 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# TEMPORARY: show the holding page at the root. Delete this block to bring the homepage concept back.
+[[redirects]]
+  from = "/"
+  to = "/placeholder/index.html"
+  status = 200
+  force = true
