@@ -10,3 +10,7 @@
 - Search: added business details for Google (EmploymentAgency schema with address, phone and founder) on the homepage.
 - Search: build now generates sitemap.xml; robots.txt points to it (staging stays hidden via the noindex header).
 - Small phones (360px): registration steps show only the current step's label so they don't wrap.
+
+## 17:19
+- Mobile speed: phones now load a 65KB hero image instead of the 220KB desktop one (srcset + matching preload).
+- Less jumping while pages load: width and height added to every page image, with a global `height: auto` so nothing stretches.

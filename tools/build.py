@@ -86,7 +86,7 @@ SCHEMA = """  <script type="application/ld+json">
 
 
 def head(title, desc, path, key):
-    preload = '\n  <link rel="preload" as="image" href="/assets/img/hero-ship.webp">' if key == "home" else ""
+    preload = '\n  <link rel="preload" as="image" href="/assets/img/hero-ship.webp" imagesrcset="/assets/img/hero-ship-1200.webp 1200w, /assets/img/hero-ship.webp 2480w" imagesizes="100vw">' if key == "home" else ""
     canonical = f"{SITE}{path}" if key != "404" else SITE + "/"
     return f"""<!doctype html>
 <html lang="en-GB">

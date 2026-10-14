@@ -29,7 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 [hidden] { display: none !important; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
