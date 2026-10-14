@@ -898,3 +898,12 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
 }
 .hiring--page { background: var(--stone); }
 .hiring--page .vac__tag { background: #F4F2EC; }
+/* label above the pin (used for Plymouth) */
+.wmap__pin--t .wmap__label { left: 0; top: auto; bottom: 16px; translate: -50% 0; text-align: center; justify-items: center; }
+@media (max-width: 1100px) {
+  .wmap__label { padding: 5px 10px; }
+  .wmap__label span { display: none; }
+}
+@media (max-width: 700px) {
+  .wmap__pin--t .wmap__label { bottom: 12px; }
+}

@@ -40,3 +40,6 @@
 - Recruiting now: live vacancy pills (Mechanical Fitter, Devonport; Welders, Bahamas) with a pulsing "Recruiting now" indicator. Tap to expand the role, apply (pre-fills the registration form with the role) or WhatsApp Nick about it. Shown on the homepage and as "Active vacancies" at the top of Candidates; a green dot on the Candidates menu link signals live roles.
 - Where we work: dotted world map on the homepage with gold pins (Plymouth HQ, Romania, Nashville, The Bahamas, Brazil) and dashed connection arcs from Plymouth. Pins drop in on scroll; hover or tap to highlight. On phones the map zooms into the Americas and Europe with a tap-to-reveal location list.
 - WhatsApp: message Nick directly from the mobile quick bar, mobile menu, footer, contact details and each vacancy, with a pre-written opening message.
+
+## 19:48
+- Map labels: Plymouth's label now sits above its pin so it never collides with the Nashville and Bahamas labels; labels go compact (name only) below 1100px. Checked clean at 1440, 1024, 768 and 390.

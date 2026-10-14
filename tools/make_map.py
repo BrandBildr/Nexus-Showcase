@@ -10,7 +10,7 @@ from pathlib import Path
 
 # name, detail line, lat, lon, label side ("l" or "r")
 LOCATIONS = [
-    ("Plymouth, UK", "Head office", 50.37, -4.14, "l"),
+    ("Plymouth, UK", "Head office", 50.37, -4.14, "t"),
     ("Romania", "Europe", 44.17, 28.63, "r"),
     ("Nashville, USA", "North America", 36.16, -86.78, "l"),
     ("The Bahamas", "Caribbean", 25.06, -77.35, "r"),
