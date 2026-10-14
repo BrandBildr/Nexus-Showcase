@@ -171,19 +171,19 @@
               <legend class="sr-only">About you</legend>
               <div class="form">
                 <div class="field">
-                  <input id="c-name" name="name" type="text" autocomplete="name" placeholder=" " required>
+                  <input id="c-name" name="name" type="text" autocomplete="name" placeholder=" " required autocapitalize="words" enterkeyhint="next">
                   <label for="c-name">Full name</label>
                 </div>
                 <div class="field field--half">
-                  <input id="c-email" name="email" type="email" autocomplete="email" placeholder=" " required>
+                  <input id="c-email" name="email" type="email" autocomplete="email" placeholder=" " required autocapitalize="off" spellcheck="false" inputmode="email" enterkeyhint="next">
                   <label for="c-email">Email</label>
                 </div>
                 <div class="field field--half">
-                  <input id="c-phone" name="phone" type="tel" autocomplete="tel" placeholder=" " required>
+                  <input id="c-phone" name="phone" type="tel" autocomplete="tel" placeholder=" " required inputmode="tel" enterkeyhint="next">
                   <label for="c-phone">Mobile number</label>
                 </div>
                 <div class="field">
-                  <input id="c-location" name="location" type="text" autocomplete="address-level2" placeholder=" " required>
+                  <input id="c-location" name="location" type="text" autocomplete="address-level2" placeholder=" " required autocapitalize="words" enterkeyhint="next">
                   <label for="c-location">Town or postcode</label>
                 </div>
               </div>
@@ -193,7 +193,7 @@
               <legend class="sr-only">Your work</legend>
               <div class="form">
                 <div class="field">
-                  <input id="c-trade" name="trade" type="text" placeholder=" " required>
+                  <input id="c-trade" name="trade" type="text" placeholder=" " required autocapitalize="sentences" enterkeyhint="next">
                   <label for="c-trade">Main trade or role</label>
                 </div>
                 <fieldset class="pick">

@@ -36,19 +36,19 @@
                 <p class="form__note" data-candidate-only hidden>Want to send your CV too? <a href="/candidates/#register">Register as a candidate</a> and we'll match you to suitable work.</p>
 
                 <div class="field">
-                  <input id="f-name" name="name" type="text" autocomplete="name" placeholder=" " required>
+                  <input id="f-name" name="name" type="text" autocomplete="name" placeholder=" " required autocapitalize="words" enterkeyhint="next">
                   <label for="f-name">Full name</label>
                 </div>
                 <div class="field" data-client-only>
-                  <input id="f-company" name="company" type="text" autocomplete="organization" placeholder=" ">
+                  <input id="f-company" name="company" type="text" autocomplete="organization" placeholder=" " autocapitalize="words" enterkeyhint="next">
                   <label for="f-company">Company</label>
                 </div>
                 <div class="field field--half">
-                  <input id="f-email" name="email" type="email" autocomplete="email" placeholder=" " required>
+                  <input id="f-email" name="email" type="email" autocomplete="email" placeholder=" " required autocapitalize="off" spellcheck="false" inputmode="email" enterkeyhint="next">
                   <label for="f-email">Email</label>
                 </div>
                 <div class="field field--half">
-                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder=" ">
+                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder=" " inputmode="tel" enterkeyhint="next">
                   <label for="f-phone">Phone (optional)</label>
                 </div>
                 <div class="field">

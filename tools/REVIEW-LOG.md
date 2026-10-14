@@ -21,3 +21,7 @@
 ## 17:53
 - Accessibility: homepage sector panels now behave as expand buttons for screen readers (they were marked as tabs with no matching panels), keep arrow-key support, and show a clear focus ring.
 - Contrast: inactive registration step labels and the sector index links darkened to pass readability guidelines.
+
+## 18:10
+- Phone keyboards: email fields open the email keyboard with no auto-capitals or autocorrect, phone fields open the number pad, names capitalise automatically, and the keyboard's return key reads "Next" while filling in forms.
+- Re-tested the full registration flow, enquiry deep links and mobile menu: all working.
