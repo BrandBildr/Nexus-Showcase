@@ -32,3 +32,6 @@
 
 ## 18:43
 - Sector links (footer and sector index): landing on a sector now leaves clear space under the sticky header and sector pills on phones and desktop.
+
+## 18:59 (final)
+- Full regression on all seven pages at phone size: no overflow, no undersized tap targets, no missing images, no script errors. Registration flow, enquiry deep links, mobile menu and sector panels all pass.
