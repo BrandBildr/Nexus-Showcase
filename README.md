@@ -21,6 +21,11 @@ This writes `index.html`, `about/`, `sectors/`, `candidates/`, `contact/`, `priv
 - Interactions: `assets/js/main.js` (GSAP, ScrollTrigger and Lenis load from CDNs)
 - Images: `assets/img/`
 
+## Vacancies, map and WhatsApp
+- **Vacancies:** edit `tools/partials/vacancies.html` (one `<li class="vac">` per role), then rebuild. The same list appears on the homepage and Candidates. Update the "recruiting now" badges in `tools/pages/sectors.html` and the green dot on the Candidates menu link (`NAV` in `tools/build.py`) to match.
+- **Map pins:** edit `LOCATIONS` and `LIVE` in `tools/make_map.py`, run it with the Natural Earth `ne_110m_land.geojson` file, then rebuild.
+- **WhatsApp:** links use `https://wa.me/447963398473` with a pre-written message. Change the number in `tools/build.py`, `tools/partials/vacancies.html` and the contact pages if it changes.
+
 ## Placeholders
 Anything with `class="ph"` is placeholder content shown with a dashed gold outline: client logos, case studies, testimonials, Nick's photo and the privacy policy retention periods. Replace it and remove the `ph` class before launch.
 

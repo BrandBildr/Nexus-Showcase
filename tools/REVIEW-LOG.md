@@ -49,3 +49,7 @@
 
 ## 20:21
 - Map and vacancies linked: Plymouth and The Bahamas pins carry a pulsing green dot, and the Bahamas label reads "Recruiting now", matching the live roles.
+
+## 20:37
+- Checked the new features at 360px: quick bar (Call, WhatsApp, Book) fits, vacancy cards stack their buttons full width, and closed vacancy links are hidden from keyboard focus.
+- README updated with how to add or close vacancies, change map pins and update the WhatsApp number.
