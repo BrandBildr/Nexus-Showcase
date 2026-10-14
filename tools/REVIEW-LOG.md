@@ -53,3 +53,7 @@
 ## 20:37
 - Checked the new features at 360px: quick bar (Call, WhatsApp, Book) fits, vacancy cards stack their buttons full width, and closed vacancy links are hidden from keyboard focus.
 - README updated with how to add or close vacancies, change map pins and update the WhatsApp number.
+
+## 20:53 (final)
+- Map pins on phones get a larger 40px tap area.
+- Full regression at 360, 390 and 768px across all pages: no broken links or images, no layout overflow (the zoomed map layer is clipped by design), registration and enquiry flows, sector panels, vacancies, role pre-fill and map all pass with no script errors.
