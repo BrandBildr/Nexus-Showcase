@@ -758,3 +758,17 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
 .reg-progress li { color: rgba(13,9,7,.58); }
 .sector-index a { color: rgba(13,9,7,.58); }
 .panel:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
+/* review pass 7: phones held sideways, keep the whole hero on screen */
+@media (orientation: landscape) and (max-height: 520px) {
+  .hero__content { padding: calc(var(--nav-h) + 4px) 16px 24px; }
+  .hero__icon { width: 74px; margin-bottom: 12px; }
+  .wordmark { height: 30px; gap: 26px; }
+  .hero__group { margin-top: 10px; max-width: 460px; }
+  .hero__group-text { font-size: .78rem; }
+  .hero__tag { margin-top: 10px; font-size: .62rem; }
+  .hero__ctas { margin-top: 18px; }
+  .hero__ctas .btn { --pad: 11px 22px; font-size: .85rem; }
+  .hero__scroll { display: none; }
+  .phero { padding-top: calc(var(--nav-h) + 28px); }
+  .phero__title { font-size: 2.2rem; }
+}

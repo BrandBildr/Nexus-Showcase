@@ -25,3 +25,7 @@
 ## 18:10
 - Phone keyboards: email fields open the email keyboard with no auto-capitals or autocorrect, phone fields open the number pad, names capitalise automatically, and the keyboard's return key reads "Next" while filling in forms.
 - Re-tested the full registration flow, enquiry deep links and mobile menu: all working.
+
+## 18:27
+- Locked-down networks: if a company network blocks the animation library (common on defence and corporate sites), pages now show all content immediately instead of waiting up to four seconds.
+- Phones held sideways: the homepage hero shrinks to fit, so the logo, tagline and both buttons sit on one screen.

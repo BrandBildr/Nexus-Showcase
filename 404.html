@@ -28,6 +28,8 @@
     // Hide animated elements before first paint, only when motion is welcome.
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.documentElement.classList.add('js-anim');
+      // If the animation library is blocked (e.g. a locked-down work network), show everything straight away
+      document.addEventListener('DOMContentLoaded', function () { if (!window.gsap) document.documentElement.classList.remove('js-anim'); });
       setTimeout(function () { if (!window.gsap) document.documentElement.classList.remove('js-anim'); }, 4000);
     }
   </script>
