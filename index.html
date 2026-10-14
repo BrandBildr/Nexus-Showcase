@@ -4,16 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nexus Resourcing Group | Connecting talent. Powering projects.</title>
-  <meta name="description" content="Nexus Resourcing Group supplies skilled people to commercial, domestic, marine and defence projects in the UK and worldwide.">
-  <!-- Concept site: keep out of search engines until signed off -->
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Skilled, vetted people for commercial, domestic, marine and defence projects across the UK and worldwide. Talk directly to Nick Souness.">
+  <link rel="canonical" href="https://nexusrg.co.uk/">
   <meta name="theme-color" content="#0D0907">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nexus Resourcing Group">
+  <meta property="og:title" content="Nexus Resourcing Group | Connecting talent. Powering projects.">
+  <meta property="og:description" content="Skilled, vetted people for commercial, domestic, marine and defence projects across the UK and worldwide. Talk directly to Nick Souness.">
+  <meta property="og:url" content="https://nexusrg.co.uk/">
+  <meta property="og:image" content="https://nexusrg.co.uk/assets/img/og-image.jpg?v=1">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nexus Resourcing Group logo">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/img/hero-ship.webp">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/assets/img/hero-ship.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css">
   <script>
     // Hide animated elements before first paint, only when motion is welcome.
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -22,27 +32,47 @@
     }
   </script>
 </head>
-<body>
+<body class="page-home" data-page="home">
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="nav" id="nav">
-    <a class="nav__brand" href="#top" aria-label="Nexus Resourcing Group, back to top">
-      <img src="assets/img/logo-h-goldwhite.webp" alt="Nexus" width="600" height="167">
+    <a class="nav__brand" href="/" aria-label="Nexus Resourcing Group, home">
+      <img src="/assets/img/logo-h-goldwhite.webp" alt="Nexus" width="600" height="167">
     </a>
-    <nav class="nav__links" aria-label="Sections">
-      <a href="#about">About</a>
-      <a href="#sectors">Sectors</a>
-      <a href="#approach">Approach</a>
-      <a href="#nick">Meet Nick</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="/about/">About</a>
+      <a href="/sectors/">Sectors</a>
+      <a href="/candidates/">Candidates</a>
+      <a href="/contact/">Contact</a>
     </nav>
-    <a class="btn btn--gold btn--sm" href="#contact" data-contact-tab="call">Book a chat</a>
+    <a class="btn btn--gold btn--sm nav__cta" href="/contact/">Book a chat</a>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="sr-only">Menu</span><span class="nav__bars" aria-hidden="true"></span>
+    </button>
   </header>
+
+  <div class="menu" id="menu" hidden>
+    <img class="menu__mark" src="/assets/img/icon-gold.webp" alt="" aria-hidden="true">
+    <nav class="menu__inner" aria-label="Menu">
+      <ul class="menu__links">
+        <li><a href="/" aria-current="page">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/sectors/">Sectors</a></li>
+        <li><a href="/candidates/">Candidates</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+      <div class="menu__foot">
+        <a class="btn btn--gold" href="/contact/">Book a chat with Nick</a>
+        <p><a href="tel:+447963398473">07963 398473</a><br><a href="mailto:nick@nexusrg.co.uk">nick@nexusrg.co.uk</a></p>
+      </div>
+    </nav>
+  </div>
 
   <main id="main">
     <!-- HERO -->
     <section class="hero" id="top">
       <div class="hero__media" aria-hidden="true">
-        <img src="assets/img/hero-ship.webp" alt="" class="hero__img">
+        <img src="/assets/img/hero-ship.webp" alt="" class="hero__img" width="2480" height="1010" fetchpriority="high">
       </div>
       <div class="hero__shade" aria-hidden="true"></div>
 
@@ -50,15 +80,15 @@
         <h1 class="hero__title">
           <span class="sr-only">Nexus Resourcing Group</span>
           <span class="hero__icon" aria-hidden="true">
-            <img src="assets/img/icon-gold.webp" alt="" width="900" height="712">
+            <img src="/assets/img/icon-gold.webp" alt="" width="900" height="712">
             <span class="hero__shine"></span>
           </span>
           <span class="wordmark" aria-hidden="true">
-            <img class="wm" src="assets/img/wm-n-w.png" alt="" height="150">
-            <img class="wm" src="assets/img/wm-e-w.png" alt="" height="150">
-            <img class="wm wm--x" src="assets/img/wm-x-w.png" alt="" height="150">
-            <img class="wm" src="assets/img/wm-u-w.png" alt="" height="150">
-            <img class="wm" src="assets/img/wm-s-w.png" alt="" height="150">
+            <img class="wm" src="/assets/img/wm-n-w.png" alt="" height="150">
+            <img class="wm" src="/assets/img/wm-e-w.png" alt="" height="150">
+            <img class="wm wm--x" src="/assets/img/wm-x-w.png" alt="" height="150">
+            <img class="wm" src="/assets/img/wm-u-w.png" alt="" height="150">
+            <img class="wm" src="/assets/img/wm-s-w.png" alt="" height="150">
           </span>
           <span class="hero__group" aria-hidden="true">
             <span class="rule"></span><span class="hero__group-text">Resourcing Group</span><span class="rule"></span>
@@ -81,7 +111,8 @@
       <div class="wrap about__grid">
         <h2 class="display about__title" data-split>Specialist resource for complex projects, in the UK and worldwide.</h2>
         <div class="about__body">
-          <p class="lede">Nexus Resourcing Group supplies skilled people to commercial, domestic, marine and defence projects. Clients choose us for trust, years of expertise and relationships built to last.</p>
+          <p class="lede">Nexus Resourcing Group supplies skilled, vetted people to commercial, domestic, marine and defence projects. It's built on more than twenty years of resourcing experience, and on being there when a project needs us most.</p>
+          <a class="textlink" href="/about/">How we work</a>
         </div>
       </div>
 
@@ -113,7 +144,7 @@
 
       <div class="panels" role="tablist" aria-label="Sectors">
         <button class="panel is-active" role="tab" aria-selected="true" aria-controls="p-marine" id="t-marine">
-          <img src="assets/img/sector-marine.webp" alt="" loading="lazy">
+          <img src="/assets/img/sector-marine.webp" alt="" loading="lazy">
           <span class="panel__name">Marine</span>
           <span class="panel__body" id="p-marine">
             <span class="panel__title">Marine</span>
@@ -121,7 +152,7 @@
           </span>
         </button>
         <button class="panel" role="tab" aria-selected="false" aria-controls="p-commercial" id="t-commercial">
-          <img src="assets/img/sector-commercial.webp" alt="" loading="lazy">
+          <img src="/assets/img/sector-commercial.webp" alt="" loading="lazy">
           <span class="panel__name">Commercial</span>
           <span class="panel__body" id="p-commercial">
             <span class="panel__title">Commercial</span>
@@ -129,7 +160,7 @@
           </span>
         </button>
         <button class="panel" role="tab" aria-selected="false" aria-controls="p-domestic" id="t-domestic">
-          <img src="assets/img/sector-domestic.webp" alt="" loading="lazy">
+          <img src="/assets/img/sector-domestic.webp" alt="" loading="lazy">
           <span class="panel__name">Domestic</span>
           <span class="panel__body" id="p-domestic">
             <span class="panel__title">Domestic</span>
@@ -137,13 +168,16 @@
           </span>
         </button>
         <button class="panel" role="tab" aria-selected="false" aria-controls="p-defence" id="t-defence">
-          <img src="assets/img/sector-defence.webp" alt="" loading="lazy">
+          <img src="/assets/img/sector-defence.webp" alt="" loading="lazy">
           <span class="panel__name">Defence</span>
           <span class="panel__body" id="p-defence">
             <span class="panel__title">Defence</span>
             <span class="panel__text">Vetted, compliant people for defence programmes and secure environments, with the paperwork done properly.</span>
           </span>
         </button>
+      </div>
+      <div class="wrap sectors__more">
+        <a class="textlink textlink--light" href="/sectors/">See the roles we supply in each sector</a>
       </div>
     </section>
 
@@ -201,13 +235,49 @@
       </ul>
     </section>
 
+    <!-- PROOF -->
+    <section class="proof" aria-labelledby="proof-title">
+      <div class="wrap">
+        <div class="proof__head">
+          <h2 class="display" id="proof-title">Trusted on site</h2>
+          <p>The clients, projects and people behind the work.</p>
+        </div>
+
+        <ul class="logos ph" data-ph="Client logos to follow" aria-label="Clients">
+          <li>Client logo</li><li>Client logo</li><li>Client logo</li><li>Client logo</li><li>Client logo</li>
+        </ul>
+
+        <div class="proof__grid">
+          <article class="case ph" data-ph="Case study to follow">
+            <div class="case__media"><img src="/assets/img/sector-commercial.webp" alt="" loading="lazy"></div>
+            <div class="case__body">
+              <p class="case__sector">Commercial</p>
+              <h3>[Project name]</h3>
+              <p>[Two or three sentences on the challenge, the people Nexus supplied and the result for the client.]</p>
+              <dl class="case__facts">
+                <div><dt>Location</dt><dd>[Location]</dd></div>
+                <div><dt>Team</dt><dd>[Team size]</dd></div>
+                <div><dt>Mobilised</dt><dd>[Timescale]</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <figure class="quote ph" data-ph="Testimonial to follow">
+            <svg class="quote__mark" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V22C0 9 7 1 20 0v7c-7 1-11 6-11 13h10v16zm28 0V22C28 9 35 1 48 0v7c-7 1-11 6-11 13h10v16z"/></svg>
+            <blockquote><p>[A short quote from a site manager or project lead about the people Nexus supplied and how quickly they arrived.]</p></blockquote>
+            <figcaption><strong>[Name]</strong> [Role], [Company]</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <!-- NICK -->
     <section class="nick" id="nick">
       <div class="wrap nick__grid">
         <figure class="nick__photo">
-          <img class="nick__mark" src="assets/img/icon-gold.webp" alt="" aria-hidden="true">
+          <img class="nick__mark" src="/assets/img/icon-gold.webp" alt="" aria-hidden="true">
           <div class="nick__frame nick__frame--ph" role="img" aria-label="Photo of Nick Souness to follow">
-            <img src="assets/img/icon-gold.webp" alt="" aria-hidden="true">
+            <img src="/assets/img/icon-gold.webp" alt="" aria-hidden="true">
             <span class="ph__title">Nick Souness</span>
             <span class="ph__note">Profile photo to follow</span>
           </div>
@@ -222,7 +292,10 @@
           <blockquote>
             <p>Good resourcing shouldn't start when something goes wrong. It should start when the job is planned.</p>
           </blockquote>
-          <a class="btn btn--gold" href="#contact" data-contact-tab="call">Book a chat with Nick</a>
+          <div class="nick__actions">
+            <a class="btn btn--gold" href="#contact" data-contact-tab="call">Book a chat with Nick</a>
+            <a class="textlink textlink--light" href="/about/#nick">Read Nick's story</a>
+          </div>
         </div>
       </div>
     </section>
@@ -232,14 +305,13 @@
       <div class="wrap contact__grid">
         <div class="contact__intro">
           <h2 class="display">Need resource for your next project?</h2>
-          <p>Book a short call with Nick, or send an enquiry if you'd rather not talk yet. Looking for your next role? We want to hear from you too.</p>
+          <p>Book a short call with Nick, or send an enquiry if you'd rather not talk yet. Looking for your next role? <a href="/candidates/">Register as a candidate</a>.</p>
           <dl class="contact__details">
             <div><dt>Phone</dt><dd><a href="tel:+447963398473">07963 398473</a></dd></div>
             <div><dt>Email</dt><dd><a href="mailto:nick@nexusrg.co.uk">nick@nexusrg.co.uk</a></dd></div>
           </dl>
         </div>
-
-        <div class="contact__card">
+        <div class="contact__card" id="book">
           <div class="switch" role="tablist" aria-label="How would you like to get in touch?">
             <button role="tab" id="tab-call" aria-controls="pane-call" aria-selected="true" class="switch__btn is-active" data-tab="call">Book a call</button>
             <button role="tab" id="tab-enquiry" aria-controls="pane-enquiry" aria-selected="false" class="switch__btn" data-tab="enquiry">Send an enquiry</button>
@@ -260,20 +332,21 @@
                 <li>Calendar invite sent straight to you</li>
                 <li>Phone or video, whichever you prefer</li>
               </ul>
-              <a class="btn btn--dark btn--block" id="cal-link" href="https://cal.com/nick-souness" target="_blank" rel="noopener">Choose a time on Cal.com</a>
+              <a class="btn btn--dark btn--block" data-cal href="https://cal.com/nick-souness" target="_blank" rel="noopener">Choose a time on Cal.com</a>
               <p class="pane__alt">Don't want to speak yet? <button type="button" class="linkish" data-tab-jump="enquiry">Send an enquiry instead</button></p>
             </div>
 
             <div class="pane" id="pane-enquiry" role="tabpanel" aria-labelledby="tab-enquiry" hidden>
-              <form class="form" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <form class="form" data-form="enquiry" name="enquiry" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
                 <input type="hidden" name="form-name" value="enquiry">
-                <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
+                <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 
                 <fieldset class="who">
                   <legend>I'm getting in touch because</legend>
                   <label><input type="radio" name="enquiry-type" value="Client" checked><span>I need people for a project</span></label>
                   <label><input type="radio" name="enquiry-type" value="Candidate"><span>I'm looking for work</span></label>
                 </fieldset>
+                <p class="form__note" data-candidate-only hidden>Want to send your CV too? <a href="/candidates/#register">Register as a candidate</a> and we'll match you to suitable work.</p>
 
                 <div class="field">
                   <input id="f-name" name="name" type="text" autocomplete="name" placeholder=" " required>
@@ -305,11 +378,12 @@
                   <textarea id="f-msg" name="message" rows="4" placeholder=" " required></textarea>
                   <label for="f-msg" data-msg-label>Tell us about the project</label>
                 </div>
+                <p class="form__small">We'll only use your details to reply to your enquiry. See our <a href="/privacy/">privacy policy</a>.</p>
                 <p class="form__error" role="alert" hidden></p>
                 <button class="btn btn--dark btn--block" type="submit">Send enquiry</button>
               </form>
               <div class="sent" hidden tabindex="-1">
-                <img src="assets/img/icon-gold.webp" alt="" aria-hidden="true">
+                <img src="/assets/img/icon-gold.webp" alt="" aria-hidden="true">
                 <h3>Enquiry sent</h3>
                 <p>Thanks. Nick will be in touch shortly.</p>
                 <button type="button" class="linkish" data-reset-form>Send another enquiry</button>
@@ -323,24 +397,46 @@
 
   <footer class="foot">
     <div class="wrap foot__grid">
-      <img class="foot__logo" src="assets/img/logo-white.webp" alt="Nexus">
-      <div class="foot__info">
+      <div class="foot__brand">
+        <img class="foot__logo" src="/assets/img/logo-white.webp" alt="Nexus Resourcing Group" width="700" height="457" loading="lazy">
         <p class="foot__tag"><span>Connecting talent.</span> <span>Powering projects.</span></p>
-        <p>Nick Souness, Managing Director<br>
-          <a href="tel:+447963398473">07963 398473</a><br>
-          <a href="mailto:nick@nexusrg.co.uk">nick@nexusrg.co.uk</a><br>
-          nexusrg.co.uk</p>
+      </div>
+      <nav class="foot__col" aria-label="Footer">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/sectors/">Sectors</a></li>
+          <li><a href="/candidates/">Candidates</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="foot__col">
+        <h2>Sectors</h2>
+        <ul>
+          <li><a href="/sectors/#marine">Marine</a></li>
+          <li><a href="/sectors/#commercial">Commercial</a></li>
+          <li><a href="/sectors/#domestic">Domestic</a></li>
+          <li><a href="/sectors/#defence">Defence</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h2>Talk to Nick</h2>
+        <ul>
+          <li><a href="tel:+447963398473">07963 398473</a></li>
+          <li><a href="mailto:nick@nexusrg.co.uk">nick@nexusrg.co.uk</a></li>
+          <li><a href="/contact/">Book a call</a></li>
+        </ul>
       </div>
     </div>
     <div class="wrap foot__base">
-      <p>&copy; <span id="yr">2026</span> Nexus Resourcing Group</p>
-      <p>Marine &nbsp;/&nbsp; Commercial &nbsp;/&nbsp; Domestic &nbsp;/&nbsp; Defence</p>
+      <p>&copy; <span data-year>2026</span> Nexus Resourcing Group Limited. Registered in England and Wales, company no. 17426336. Registered office: 51 Burnham Park Road, Plymouth, PL3 5QB.</p>
+      <p><a href="/privacy/">Privacy &amp; cookies</a></p>
     </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="assets/js/main.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
