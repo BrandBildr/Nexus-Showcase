@@ -31,7 +31,8 @@
     gsap.ticker.lagSmoothing(0);
   });
   const scrollToEl = (el, immediate = false) => {
-    const offset = el.id === 'top' ? 0 : -navH() + 1;
+    // sector sections get a little extra room so the sticky sector pills never touch the heading
+    const offset = el.id === 'top' ? 0 : -navH() + 1 - (el.classList.contains('sector') ? 20 : 0);
     if (lenis) lenis.scrollTo(el, { offset, duration: immediate ? 0 : 1.4, immediate });
     else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + offset, behavior: reduce || immediate ? 'auto' : 'smooth' });
   };

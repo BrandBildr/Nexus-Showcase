@@ -29,3 +29,6 @@
 ## 18:27
 - Locked-down networks: if a company network blocks the animation library (common on defence and corporate sites), pages now show all content immediately instead of waiting up to four seconds.
 - Phones held sideways: the homepage hero shrinks to fit, so the logo, tagline and both buttons sit on one screen.
+
+## 18:43
+- Sector links (footer and sector index): landing on a sector now leaves clear space under the sticky header and sector pills on phones and desktop.
