@@ -8,7 +8,7 @@ Edit LOCATIONS below to change the pins, then run tools/build.py.
 import json, sys
 from pathlib import Path
 
-# name, detail line, lat, lon, label side ("l" or "r")
+# name, detail line, lat, lon, label side ("l", "r" or "t"); LIVE = places with open vacancies
 LOCATIONS = [
     ("Plymouth, UK", "Head office", 50.37, -4.14, "t"),
     ("Romania", "Europe", 44.17, 28.63, "r"),
@@ -16,6 +16,7 @@ LOCATIONS = [
     ("The Bahamas", "Caribbean", 25.06, -77.35, "r"),
     ("Brazil", "South America", -22.9, -43.2, "r"),
 ]
+LIVE = {"Plymouth, UK", "The Bahamas"}
 LAT_TOP, LAT_BOT, LON_L, LON_R = 74, -56, -170, 190
 STEP = 2.0
 W = (LON_R - LON_L) / STEP
@@ -63,7 +64,7 @@ def main(src):
         pins.append(
             f'<li class="wmap__pin{" is-hq" if i == 0 else ""} wmap__pin--{side}" style="--x:{x / W * 100:.2f}%;--y:{y / H * 100:.2f}%;--i:{i}">'
             f'<button type="button" class="wmap__dot" aria-describedby="wm-{i}"><span class="sr-only">{name}</span></button>'
-            f'<span class="wmap__label" id="wm-{i}"><strong>{name}</strong><span>{detail}</span></span></li>')
+            f'<span class="wmap__label" id="wm-{i}"><strong>{name}{" <i class=wmap__live aria-hidden=true></i>" if name in LIVE else ""}</strong><span>{"Recruiting now" if name in LIVE and i else detail}</span></span></li>')
     html = f'''        <div class="wmap" data-map>
           <div class="wmap__frame">
             <div class="wmap__stage">

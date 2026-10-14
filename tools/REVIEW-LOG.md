@@ -46,3 +46,6 @@
 
 ## 20:05
 - Sectors page: Marine and Commercial now show a live "1 role recruiting now" badge linking straight to the vacancies, so live roles surface wherever people are browsing.
+
+## 20:21
+- Map and vacancies linked: Plymouth and The Bahamas pins carry a pulsing green dot, and the Bahamas label reads "Recruiting now", matching the live roles.

@@ -912,3 +912,5 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
 .live--link:hover { background: #D6EFE1; }
 .live--link:hover::after { width: 22px; }
 .sector__body .live--link { margin-top: 6px; }
+.wmap__live { display: inline-block; width: 7px; height: 7px; margin-left: 6px; border-radius: 50%; background: #3DBE7E; vertical-align: 1px; animation: navLive 2.4s ease-out infinite; }
+.wmap__label strong:has(.wmap__live) + span { color: #7FD8A8; }
