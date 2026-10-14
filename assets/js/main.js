@@ -61,6 +61,7 @@
       nav.classList.toggle('is-solid', y > 40);
       if (y > limit && y > lastY + 2) nav.classList.add('is-hidden');
       if (y < lastY - 2 || y <= limit) nav.classList.remove('is-hidden');
+      root.classList.toggle('nav-hidden', nav.classList.contains('is-hidden'));
       lastY = y;
     };
     window.addEventListener('scroll', onScroll, { passive: true });
