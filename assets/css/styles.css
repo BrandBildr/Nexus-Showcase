@@ -772,3 +772,129 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
   .phero { padding-top: calc(var(--nav-h) + 28px); }
   .phero__title { font-size: 2.2rem; }
 }
+
+/* =====================================================================
+   Recruiting now, world map, WhatsApp
+   ===================================================================== */
+
+/* live indicator */
+.live { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: .72rem; letter-spacing: .04em; color: #1F7A4D; white-space: nowrap; }
+.live__dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #2FA36B; flex: none; }
+.live__dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #2FA36B; opacity: 0; animation: livePulse 2s cubic-bezier(.2,.6,.3,1) infinite; }
+@keyframes livePulse { 0% { transform: scale(.5); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
+.live--lg { font-size: .85rem; padding: 7px 14px 7px 12px; border-radius: 999px; background: #E8F5EE; }
+.nav__live { display: inline-block; width: 7px; height: 7px; margin-left: 7px; border-radius: 50%; background: #3DBE7E; vertical-align: 2px; box-shadow: 0 0 0 0 rgba(61,190,126,.6); animation: navLive 2.4s ease-out infinite; }
+@keyframes navLive { 0% { box-shadow: 0 0 0 0 rgba(61,190,126,.55); } 70%, 100% { box-shadow: 0 0 0 7px rgba(61,190,126,0); } }
+
+/* recruiting now section */
+.hiring { padding: clamp(80px, 10vw, 140px) 0; background: var(--bone); }
+.hiring--page { background: var(--bone); }
+.hiring__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+.hiring__intro { display: grid; gap: 18px; justify-items: start; position: sticky; top: calc(var(--nav-h) + 32px); }
+.hiring__intro > p:not(.live) { color: var(--ink-70); max-width: 40ch; }
+.hiring__intro .textlink { margin-top: 0; }
+.hiring__note a { color: var(--ink); font-weight: 700; text-decoration-color: var(--brass); text-underline-offset: 3px; }
+
+/* vacancy pills */
+.vacs { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.vac { border-radius: 28px; background: #fff; border: 1px solid rgba(13,9,7,.09); box-shadow: 0 1px 0 rgba(13,9,7,.04); transition: border-color .4s, box-shadow .5s var(--ease); }
+.vac:hover, .vac.is-open { border-color: rgba(229,188,104,.7); box-shadow: 0 24px 50px -32px rgba(87,59,17,.5); }
+.vac__pill {
+  width: 100%; display: grid; grid-template-columns: auto 1fr auto auto; grid-template-areas: "live role tag chev" "live loc tag chev";
+  align-items: center; column-gap: 18px; row-gap: 2px; padding: 16px 20px 16px 22px; border: 0; background: none; cursor: pointer; text-align: left; border-radius: 28px;
+}
+.vac__pill .live { grid-area: live; }
+.vac__role { grid-area: role; font-weight: 800; font-size: 1.12rem; text-transform: uppercase; letter-spacing: .01em; line-height: 1.2; }
+.vac__loc { grid-area: loc; display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; color: var(--ink-70); font-weight: 500; }
+.vac__loc svg { width: 15px; height: 15px; fill: none; stroke: var(--bronze); stroke-width: 2; }
+.vac__tag { grid-area: tag; padding: 6px 12px; border-radius: 999px; background: var(--stone); font-weight: 700; font-size: .78rem; }
+.vac__chev { grid-area: chev; width: 34px; height: 34px; border-radius: 50%; background: var(--ink); position: relative; transition: transform .5s var(--ease), background-color .3s; }
+.vac__chev::before { content: ""; position: absolute; left: 50%; top: 45%; width: 8px; height: 8px; border-right: 2px solid var(--champagne); border-bottom: 2px solid var(--champagne); transform: translate(-50%, -50%) rotate(45deg); }
+.vac.is-open .vac__chev { transform: rotate(180deg); background: var(--bronze); }
+.vac__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--ease); }
+.vac.is-open .vac__body { grid-template-rows: 1fr; }
+.vac__inner { overflow: hidden; min-height: 0; padding: 0 22px; visibility: hidden; transition: visibility 0s .55s; }
+.vac.is-open .vac__inner { visibility: visible; transition-delay: 0s; }
+.vac__inner p { color: var(--ink-70); max-width: 62ch; padding-top: 4px; border-top: 1px solid rgba(13,9,7,.08); padding-top: 16px; }
+.vac__actions { display: flex; flex-wrap: wrap; gap: 10px; padding: 18px 0 22px; }
+
+/* world map */
+.reach { position: relative; background: var(--ink); color: var(--bone); padding: clamp(80px, 10vw, 140px) 0 clamp(70px, 9vw, 120px); overflow: hidden; }
+.reach__head { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: clamp(30px, 4vw, 56px); }
+.reach__head p { color: var(--bone-70); max-width: 42ch; }
+.wmap { position: relative; }
+.wmap__svg { display: block; width: 100%; height: auto; overflow: visible; }
+.wmap__land { fill: none; stroke: rgba(251,251,249,.2); stroke-width: .78; stroke-linecap: round; }
+.wmap__arc { fill: none; stroke: var(--brass); stroke-width: .35; stroke-dasharray: 1.4 1.1; opacity: .85; }
+.js-anim .wmap__arc { opacity: 0; }
+.wmap.is-in .wmap__arc { animation: arcIn 1.6s var(--ease) both; animation-delay: calc(var(--i) * .18s + .3s); }
+@keyframes arcIn { from { opacity: 0; } to { opacity: .85; } }
+.wmap__pins { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; }
+.wmap__pin { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.wmap__dot { position: absolute; left: -16px; top: -16px; width: 32px; height: 32px; border: 0; padding: 0; background: none; cursor: pointer; border-radius: 50%; }
+.wmap__dot::before { content: ""; position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px rgba(13,9,7,.9), 0 0 18px rgba(229,188,104,.7); transition: transform .4s var(--ease); }
+.wmap__dot::after { content: ""; position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px; border-radius: 50%; border: 1.5px solid var(--brass); animation: pinPulse 2.6s ease-out infinite; animation-delay: calc(var(--i) * .4s); }
+@keyframes pinPulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(3.2); opacity: 0; } }
+.is-hq .wmap__dot::before { width: 15px; height: 15px; margin: -7.5px; }
+.wmap__label {
+  position: absolute; top: -14px; white-space: nowrap; display: grid; gap: 1px; padding: 7px 12px; border-radius: 10px;
+  background: rgba(13,9,7,.86); border: 1px solid rgba(229,188,104,.35); backdrop-filter: blur(6px);
+  font-size: .78rem; pointer-events: none; transition: opacity .35s, transform .45s var(--ease);
+}
+.wmap__label strong { font-weight: 700; color: var(--bone); font-size: .82rem; }
+.wmap__label span { color: var(--champagne); font-size: .72rem; }
+.wmap__pin--r .wmap__label { left: 18px; }
+.wmap__pin--l .wmap__label { right: 18px; }
+.wmap__dot:hover::before, .wmap__dot:focus-visible::before, .wmap__pin.is-active .wmap__dot::before { transform: scale(1.35); }
+.wmap__pin.is-active .wmap__label { border-color: var(--brass); background: rgba(36,26,16,.95); }
+.wmap__dot:focus-visible { outline-offset: 2px; }
+.js-anim .wmap__pin { opacity: 0; }
+.wmap.is-in .wmap__pin { animation: pinIn .7s var(--ease) both; animation-delay: calc(var(--i) * .18s + .9s); }
+.wmap.is-in .is-hq { animation-delay: .1s; }
+@keyframes pinIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+
+/* whatsapp in the quick bar */
+.quickbar__wa { display: none; }
+@media (max-width: 980px) {
+  .quickbar__wa { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; margin-left: auto; box-shadow: inset 0 0 0 1.5px rgba(229,188,104,.5); }
+  .quickbar__wa svg { width: 20px; height: 20px; fill: none; stroke: var(--champagne); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .quickbar .btn { margin-left: 0; }
+  .hiring__grid { grid-template-columns: 1fr; }
+  .hiring__intro { position: static; }
+  .reach__head { flex-direction: column; align-items: start; }
+}
+@media (max-width: 700px) {
+  .vac__pill { grid-template-columns: 1fr auto; grid-template-areas: "live chev" "role chev" "loc chev" "tag chev"; row-gap: 6px; padding: 16px 16px 16px 18px; }
+  .vac__tag { justify-self: start; margin-top: 4px; }
+  .vac__inner { padding: 0 18px; }
+  .vac__actions .btn { flex: 1 1 100%; }
+  /* the map is small on phones: show compact labels, hide the detail line */
+  .wmap { margin-inline: -8px; }
+  .wmap__label { padding: 4px 8px; top: -11px; }
+  .wmap__label strong { font-size: .68rem; }
+  .wmap__label span { display: none; }
+  .wmap__pin--r .wmap__label { left: 12px; }
+  .wmap__pin--l .wmap__label { right: 12px; }
+  .wmap__dot { left: -14px; top: -14px; width: 28px; height: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live__dot::after, .nav__live, .wmap__dot::after { animation: none; }
+}
+.wmap__frame { position: relative; }
+.wmap__stage { position: relative; }
+.wmap__legend { display: none; }
+@media (max-width: 700px) {
+  /* zoom the map into the Americas and Europe so the pins have room */
+  .wmap { margin-inline: 0; }
+  .wmap__frame { overflow: hidden; margin-inline: calc(-1 * clamp(16px, 4vw, 48px)); }
+  .wmap__stage { width: 232%; margin-left: -38.7%; }
+  .wmap__land { stroke-width: .9; }
+  .wmap__label { opacity: 0; transform: translateY(4px); }
+  .wmap__pin.is-active .wmap__label { opacity: 1; transform: none; }
+  .wmap__label strong { font-size: .76rem; }
+  .wmap__legend { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 18px 0 0; padding: 0; }
+  .wmap__legend button { border: 1px solid rgba(229,188,104,.35); background: rgba(251,251,249,.04); color: var(--bone); border-radius: 999px; padding: 9px 14px; font-weight: 600; font-size: .82rem; cursor: pointer; transition: background-color .3s, border-color .3s, color .3s; }
+  .wmap__legend button[aria-pressed="true"] { background: var(--gold); border-color: transparent; color: var(--ink); }
+}
+.hiring--page { background: var(--stone); }
+.hiring--page .vac__tag { background: #F4F2EC; }

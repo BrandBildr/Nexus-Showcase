@@ -18,7 +18,7 @@ SITE = "https://nexusrg.co.uk"
 NAV = [
     ("about", "/about/", "About"),
     ("sectors", "/sectors/", "Sectors"),
-    ("candidates", "/candidates/", "Candidates"),
+    ("candidates", "/candidates/", 'Candidates<span class="nav__live" title="Recruiting now" aria-label="(recruiting now)"></span>'),
     ("contact", "/contact/", "Contact"),
 ]
 
@@ -156,7 +156,7 @@ def header(key):
       </ul>
       <div class="menu__foot">
         <a class="btn btn--gold" href="/contact/">Book a chat with Nick</a>
-        <p><a href="tel:+447963398473">07963 398473</a><br><a href="mailto:nick@nexusrg.co.uk">nick@nexusrg.co.uk</a></p>
+        <p><a href="tel:+447963398473">07963 398473</a><br><a href="mailto:nick@nexusrg.co.uk">nick@nexusrg.co.uk</a><br><a href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%20found%20Nexus%20Resourcing%20Group%20online%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">Message Nick on WhatsApp</a></p>
       </div>
     </nav>
   </div>
@@ -182,6 +182,9 @@ QUICKBAR = """
     <a class="quickbar__call" href="tel:+447963398473">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
       Call Nick
+    </a>
+    <a class="quickbar__wa" href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%20found%20Nexus%20Resourcing%20Group%20online%20and%20would%20like%20to%20talk." target="_blank" rel="noopener" aria-label="Message Nick on WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.1z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></svg>
     </a>
     <a class="btn btn--gold btn--sm" href="{href}">{label}</a>
   </div>
@@ -217,6 +220,7 @@ FOOTER = """
         <ul>
           <li><a href="tel:+447963398473">07963 398473</a></li>
           <li><a href="mailto:nick@nexusrg.co.uk">nick@nexusrg.co.uk</a></li>
+          <li><a href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%20found%20Nexus%20Resourcing%20Group%20online%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">WhatsApp</a></li>
           <li><a href="/contact/">Book a call</a></li>
         </ul>
       </div>

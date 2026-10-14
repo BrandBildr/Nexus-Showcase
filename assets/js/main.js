@@ -73,7 +73,7 @@
   const quickbar = $('.quickbar');
   if (quickbar) {
     // hide it wherever the page already offers a way to get in touch
-    const blockers = $$('.hero, .phero, .contact, .register, .cta-band, .foot');
+    const blockers = $$('.hero, .phero, .contact, .register, .cta-band, .foot, .hiring');
     const inView = new Set();
     const update = () => quickbar.classList.toggle('is-visible', inView.size === 0);
     const io = new IntersectionObserver(entries => {
@@ -273,6 +273,50 @@
     const io = new IntersectionObserver(entries => entries.forEach(en => en.isIntersecting && setCurrent(en.target.id)), { rootMargin: '-40% 0px -55% 0px' });
     $$('.sector').forEach(s => io.observe(s));
     setCurrent('marine');
+  }
+
+  /* ---------- vacancies: tap a role to open it ---------- */
+  $$('.vac__pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const li = btn.closest('.vac');
+      const open = !li.classList.contains('is-open');
+      li.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open);
+      if (hasGsap) setTimeout(() => ScrollTrigger.refresh(), 600);
+    });
+  });
+
+  /* ---------- world map: pins drop in, tap or hover to highlight ---------- */
+  $$('[data-map]').forEach(map => {
+    const pins = $$('.wmap__pin', map);
+    const io = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting) { map.classList.add('is-in'); io.disconnect(); }
+    }), { threshold: 0.25 });
+    io.observe(map);
+    const legend = $$('.wmap__legend button', map);
+    const small = matchMedia('(max-width: 700px)');
+    const activate = pin => {
+      // on phones one location is always shown; on desktop all labels are visible anyway
+      if (!pin && small.matches) pin = pins[0];
+      pins.forEach(p => p.classList.toggle('is-active', p === pin));
+      legend.forEach(b => b.setAttribute('aria-pressed', pins[+b.dataset.pin] === pin));
+    };
+    pins.forEach(pin => {
+      const dot = $('.wmap__dot', pin);
+      ['mouseenter', 'focus', 'click'].forEach(ev => dot.addEventListener(ev, () => activate(pin)));
+    });
+    legend.forEach(b => b.addEventListener('click', () => activate(pins[+b.dataset.pin])));
+    map.addEventListener('mouseleave', () => activate(null));
+    small.addEventListener('change', () => activate(null));
+    activate(null);
+  });
+
+  /* ---------- candidates: arriving from a vacancy fills in the role ---------- */
+  const params = new URLSearchParams(location.search);
+  if (params.get('role') && $('#c-trade')) {
+    $('#c-trade').value = params.get('role');
+    const msg = $('#c-msg');
+    if (msg && !msg.value) msg.value = `Applying for: ${params.get('role')}${params.get('loc') ? ' (' + params.get('loc') + ')' : ''}`;
   }
 
   /* ---------- arriving with a #hash from another page ---------- */
