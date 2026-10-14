@@ -907,3 +907,8 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
 @media (max-width: 700px) {
   .wmap__pin--t .wmap__label { bottom: 12px; }
 }
+.live--link { text-decoration: none; justify-self: start; transition: background-color .3s, transform .4s var(--ease); }
+.live--link::after { content: ""; width: 14px; height: 1.5px; background: currentColor; margin-left: 2px; transition: width .4s var(--ease); }
+.live--link:hover { background: #D6EFE1; }
+.live--link:hover::after { width: 22px; }
+.sector__body .live--link { margin-top: 6px; }

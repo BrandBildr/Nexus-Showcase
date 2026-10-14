@@ -43,3 +43,6 @@
 
 ## 19:48
 - Map labels: Plymouth's label now sits above its pin so it never collides with the Nashville and Bahamas labels; labels go compact (name only) below 1100px. Checked clean at 1440, 1024, 768 and 390.
+
+## 20:05
+- Sectors page: Marine and Commercial now show a live "1 role recruiting now" badge linking straight to the vacancies, so live roles surface wherever people are browsing.
