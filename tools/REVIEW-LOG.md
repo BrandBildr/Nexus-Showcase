@@ -14,3 +14,6 @@
 ## 17:19
 - Mobile speed: phones now load a 65KB hero image instead of the 220KB desktop one (srcset + matching preload).
 - Less jumping while pages load: width and height added to every page image, with a global `height: auto` so nothing stretches.
+
+## 17:36
+- Mobile: a quick-contact bar ("Call Nick" + "Book a chat") slides up once you're past the page header, and tucks away wherever the page already shows contact options (hero, contact card, registration form, closing banner, footer). On Candidates it says "Register now" instead.

@@ -68,6 +68,20 @@
     onScroll();
   }
 
+  /* ---------- mobile quick-contact bar ---------- */
+  const quickbar = $('.quickbar');
+  if (quickbar) {
+    // hide it wherever the page already offers a way to get in touch
+    const blockers = $$('.hero, .phero, .contact, .register, .cta-band, .foot');
+    const inView = new Set();
+    const update = () => quickbar.classList.toggle('is-visible', inView.size === 0);
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => (en.isIntersecting ? inView.add(en.target) : inView.delete(en.target)));
+      update();
+    }, { rootMargin: '0px 0px -10% 0px' });
+    blockers.forEach(b => io.observe(b));
+  }
+
   /* ---------- mobile menu ---------- */
   const toggle = $('.nav__toggle');
   const menu = $('#menu');

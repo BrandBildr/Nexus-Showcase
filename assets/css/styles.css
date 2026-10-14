@@ -731,3 +731,25 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
   .reg-progress li { font-size: 0; gap: 0; }
   .reg-progress li.is-active { font-size: .82rem; gap: 8px; }
 }
+
+/* ---------- review pass 4: mobile quick-contact bar ---------- */
+.quickbar { display: none; }
+@media (max-width: 980px) {
+  .quickbar {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    position: fixed; z-index: 40; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom));
+    padding: 8px 8px 8px 18px; border-radius: 999px;
+    background: rgba(13, 9, 7, .9); backdrop-filter: blur(14px) saturate(1.2);
+    border: 1px solid rgba(229, 188, 104, .28); box-shadow: 0 16px 40px -16px rgba(0, 0, 0, .6);
+    transform: translateY(calc(100% + 24px)); opacity: 0; pointer-events: none;
+    transition: transform .6s var(--ease), opacity .4s;
+  }
+  .quickbar.is-visible { transform: none; opacity: 1; pointer-events: auto; }
+  .quickbar__call { display: inline-flex; align-items: center; gap: 10px; color: var(--bone); font-weight: 700; font-size: .92rem; text-decoration: none; padding: 10px 0; }
+  .quickbar__call svg { width: 18px; height: 18px; fill: var(--champagne); }
+  .quickbar .btn { flex: none; }
+  .menu-lock .quickbar { opacity: 0; pointer-events: none; }
+}
+@media (max-width: 380px) {
+  .nav__cta { display: none; }
+}

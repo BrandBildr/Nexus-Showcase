@@ -175,6 +175,16 @@ CTA = """
   </section>
 """
 
+QUICKBAR = """
+  <div class="quickbar" aria-label="Quick contact">
+    <a class="quickbar__call" href="tel:+447963398473">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+      Call Nick
+    </a>
+    <a class="btn btn--gold btn--sm" href="{href}">{label}</a>
+  </div>
+"""
+
 FOOTER = """
   <footer class="foot">
     <div class="wrap foot__grid">
@@ -240,6 +250,7 @@ def build():
             body,
             "  </main>",
             CTA if cta else "",
+            QUICKBAR.format(href="#register", label="Register now") if key == "candidates" else QUICKBAR.format(href="/contact/", label="Book a chat") if key in ("home", "about", "sectors") else "",
             FOOTER.lstrip("\n"),
         ])
         target = ROOT / out
