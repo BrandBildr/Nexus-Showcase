@@ -753,3 +753,8 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
 @media (max-width: 380px) {
   .nav__cta { display: none; }
 }
+
+/* review pass 5: contrast on quieter text */
+.reg-progress li { color: rgba(13,9,7,.58); }
+.sector-index a { color: rgba(13,9,7,.58); }
+.panel:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }

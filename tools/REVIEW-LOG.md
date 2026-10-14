@@ -17,3 +17,7 @@
 
 ## 17:36
 - Mobile: a quick-contact bar ("Call Nick" + "Book a chat") slides up once you're past the page header, and tucks away wherever the page already shows contact options (hero, contact card, registration form, closing banner, footer). On Candidates it says "Register now" instead.
+
+## 17:53
+- Accessibility: homepage sector panels now behave as expand buttons for screen readers (they were marked as tabs with no matching panels), keep arrow-key support, and show a clear focus ring.
+- Contrast: inactive registration step labels and the sector index links darkened to pass readability guidelines.

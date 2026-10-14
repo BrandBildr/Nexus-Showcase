@@ -230,11 +230,9 @@
     const activate = p => panels.forEach(x => {
       const on = x === p;
       x.classList.toggle('is-active', on);
-      x.setAttribute('aria-selected', on);
-      x.tabIndex = on ? 0 : -1;
+      x.setAttribute('aria-expanded', on);
     });
     panels.forEach((p, i) => {
-      p.tabIndex = i === 0 ? 0 : -1;
       p.addEventListener('click', () => activate(p));
       if (finePointer) {
         p.addEventListener('mouseenter', () => { clearTimeout(hoverTimer); hoverTimer = setTimeout(() => activate(p), 140); });
