@@ -57,6 +57,34 @@ PAGES = [
 FONTS = "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
 
 
+SCHEMA = """  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EmploymentAgency",
+    "name": "Nexus Resourcing Group",
+    "legalName": "Nexus Resourcing Group Limited",
+    "url": "https://nexusrg.co.uk/",
+    "logo": "https://nexusrg.co.uk/assets/img/og-image.jpg",
+    "image": "https://nexusrg.co.uk/assets/img/og-image.jpg",
+    "slogan": "Connecting talent. Powering projects.",
+    "description": "Skilled, vetted people for commercial, domestic, marine and defence projects across the UK and worldwide.",
+    "telephone": "+447963398473",
+    "email": "nick@nexusrg.co.uk",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "51 Burnham Park Road",
+      "addressLocality": "Plymouth",
+      "postalCode": "PL3 5QB",
+      "addressCountry": "GB"
+    },
+    "areaServed": ["GB", "Worldwide"],
+    "founder": { "@type": "Person", "name": "Nick Souness", "jobTitle": "Managing Director" },
+    "knowsAbout": ["Marine resourcing", "Commercial resourcing", "Domestic resourcing", "Defence resourcing"]
+  }
+  </script>
+"""
+
+
 def head(title, desc, path, key):
     preload = '\n  <link rel="preload" as="image" href="/assets/img/hero-ship.webp">' if key == "home" else ""
     canonical = f"{SITE}{path}" if key != "404" else SITE + "/"
@@ -85,6 +113,7 @@ def head(title, desc, path, key):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="{FONTS}" rel="stylesheet">{preload}
   <link rel="stylesheet" href="/assets/css/styles.css">
+{SCHEMA if key == "home" else ""}
   <script>
     // Hide animated elements before first paint, only when motion is welcome.
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {{
@@ -217,6 +246,14 @@ def build():
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(html, encoding="utf-8")
         print("built", out)
+
+    # sitemap for search engines (every page except the 404)
+    urls = "\n".join(f"  <url><loc>{SITE}{path}</loc></url>" for key, out, path, *_ in PAGES if key != "404")
+    (ROOT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{urls}\n</urlset>\n", encoding="utf-8")
+    print("built sitemap.xml")
 
 
 if __name__ == "__main__":
