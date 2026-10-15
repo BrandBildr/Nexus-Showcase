@@ -8,9 +8,19 @@ finished HTML to the site root (index.html, about/index.html, ...).
 Run from the repo root:  python3 tools/build.py
 """
 import re
+import hashlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def ver(rel):
+    """Short content hash so browsers fetch a fresh copy whenever the file changes."""
+    return hashlib.md5((ROOT / rel).read_bytes()).hexdigest()[:8]
+
+
+CSS_V = ver("assets/css/styles.css")
+JS_V = ver("assets/js/main.js")
 PAGES_DIR = ROOT / "tools" / "pages"
 PARTIALS_DIR = ROOT / "tools" / "partials"
 SITE = "https://nexusrg.co.uk"
@@ -112,7 +122,7 @@ def head(title, desc, path, key):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="{FONTS}" rel="stylesheet">{preload}
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css?v={CSS_V}">
 {SCHEMA if key == "home" else ""}
   <script>
     // Hide animated elements before first paint, only when motion is welcome.
@@ -234,7 +244,7 @@ FOOTER = """
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/main.js?v={JS_V}" defer></script>
 </body>
 </html>
 """
@@ -257,7 +267,7 @@ def build():
             "  </main>",
             CTA if cta else "",
             QUICKBAR.format(href="#register", label="Register now") if key == "candidates" else QUICKBAR.format(href="/contact/", label="Book a chat") if key in ("home", "about", "sectors") else "",
-            FOOTER.lstrip("\n"),
+            FOOTER.lstrip("\n").replace("{JS_V}", JS_V),
         ])
         target = ROOT / out
         target.parent.mkdir(parents=True, exist_ok=True)
