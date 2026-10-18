@@ -9,6 +9,8 @@
   const animate = !reduce && hasGsap;
   if (!animate) root.classList.remove('js-anim');
   if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+  // iOS/Android address bars resize the viewport while scrolling; don't recalculate every trigger when they do
+  if (hasGsap) ScrollTrigger.config({ ignoreMobileResize: true });
 
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
@@ -25,7 +27,8 @@
   /* ---------- smooth scroll ---------- */
   let lenis = null;
   if (animate && window.Lenis) safely(() => {
-    lenis = new Lenis({ duration: 1.15, easing: t => 1 - Math.pow(1 - t, 4), smoothWheel: true });
+    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return; // phones and tablets keep native scrolling
+    lenis = new Lenis({ lerp: 0.12, smoothWheel: true, wheelMultiplier: 1 });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
@@ -33,7 +36,7 @@
   const scrollToEl = (el, immediate = false) => {
     // sector sections get a little extra room so the sticky sector pills never touch the heading
     const offset = el.id === 'top' ? 0 : -navH() + 1 - (el.classList.contains('sector') ? 20 : 0);
-    if (lenis) lenis.scrollTo(el, { offset, duration: immediate ? 0 : 1.4, immediate });
+    if (lenis) lenis.scrollTo(el, { offset, duration: immediate ? 0 : 1.1, immediate });
     else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + offset, behavior: reduce || immediate ? 'auto' : 'smooth' });
   };
 
@@ -54,19 +57,32 @@
 
   /* ---------- nav: solid on scroll, hides on the way down ---------- */
   if (nav) {
-    let lastY = 0;
+    let lastY = window.scrollY, anchorY = lastY, hidden = false, solid = null, ticking = false;
     const firstSection = $('.hero, .phero, .lost');
-    const onScroll = () => {
-      const y = window.scrollY;
+    const update = () => {
+      ticking = false;
+      const y = Math.max(0, window.scrollY);
       const limit = firstSection ? firstSection.offsetHeight : 200;
-      nav.classList.toggle('is-solid', y > 40);
-      if (y > limit && y > lastY + 2) nav.classList.add('is-hidden');
-      if (y < lastY - 2 || y <= limit) nav.classList.remove('is-hidden');
-      root.classList.toggle('nav-hidden', nav.classList.contains('is-hidden'));
+      const s = y > 40;
+      if (s !== solid) { solid = s; nav.classList.toggle('is-solid', s); }
+      // change direction only after a real move: 24px down to hide, 12px up to show
+      if ((y > lastY) !== (lastY > anchorY)) anchorY = lastY;
+      let h = hidden;
+      if (y <= limit) h = false;
+      else if (y - anchorY > 24) h = true;
+      else if (anchorY - y > 12) h = false;
+      if (h !== hidden) { hidden = h; nav.classList.toggle('is-hidden', h); root.classList.toggle('nav-hidden', h); }
       lastY = y;
     };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    update();
+  }
+
+  /* ---------- pause looping pulses while they're off screen ---------- */
+  if ('IntersectionObserver' in window) {
+    const loopIo = new IntersectionObserver(entries => entries.forEach(en => en.target.classList.toggle('is-offscreen', !en.isIntersecting)));
+    $$('.hero__scroll, .wmap, .hiring, .sector').forEach(el => loopIo.observe(el));
   }
 
   /* ---------- mobile quick-contact bar ---------- */
@@ -139,12 +155,13 @@
     try { seen = sessionStorage.getItem('nx-intro') === '1'; sessionStorage.setItem('nx-intro', '1'); } catch (_) {}
     const k = seen ? 0.45 : 1;
     const wms = $$('.wm');
+    const small = innerWidth < 700;
     const spread = Math.min(window.innerWidth * 0.16, 220);
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.15 * k });
     tl.fromTo('.hero__img', { scale: 1.18 }, { scale: 1.04, duration: 3.2 * k, ease: 'power2.out' }, 0)
       .fromTo(wms,
-        { opacity: 0, x: i => (i - 2) * spread * 2.2, filter: 'blur(14px)' },
-        { opacity: 1, x: 0, filter: 'blur(0px)', duration: 1.8 * k, stagger: { each: 0.06 * k, from: 'edges' } }, 0.25 * k)
+        { opacity: 0, x: i => (i - 2) * spread * 2.2, filter: small ? 'none' : 'blur(14px)' },
+        { opacity: 1, x: 0, filter: small ? 'none' : 'blur(0px)', duration: 1.8 * k, stagger: { each: 0.06 * k, from: 'edges' } }, 0.25 * k)
       .fromTo('.wm--x', { rotate: -90, scale: 1.4 }, { rotate: 0, scale: 1, duration: 1.6 * k }, 0.35 * k)
       .fromTo('.hero__icon', { opacity: 0, scale: 0.55, rotate: -45, y: 20 }, { opacity: 1, scale: 1, rotate: 0, y: 0, duration: 1.6 * k }, 0.9 * k)
       .fromTo('.hero__shine', { backgroundPosition: '150% 0' }, { backgroundPosition: '-60% 0', duration: 1.6, ease: 'power2.inOut' }, 1.7 * k)
@@ -172,7 +189,7 @@
       .set('.mosaic', { opacity: 1 }, 0.25)
       .fromTo('.phero__mark', { rotate: -25, opacity: 0 }, { rotate: 0, opacity: 0.045, duration: 2.2 }, 0);
 
-    gsap.to('.phero__mark', { rotate: 18, ease: 'none', scrollTrigger: { trigger: '.phero', start: 'top top', end: 'bottom top', scrub: true } });
+    if (innerWidth >= 700) gsap.to('.phero__mark', { rotate: 18, ease: 'none', scrollTrigger: { trigger: '.phero', start: 'top top', end: 'bottom top', scrub: true } });
     if ($('.phero__media img')) gsap.fromTo('.phero__media img', { yPercent: -6 }, { yPercent: 4, ease: 'none', scrollTrigger: { trigger: '.phero', start: 'top top', end: 'bottom top', scrub: true } });
   });
 
@@ -202,11 +219,11 @@
       const obj = { v: 0 };
       gsap.to(obj, { v: +c.dataset.to, duration: 1.6, ease: 'power3.out', onUpdate: () => (c.textContent = Math.round(obj.v)), scrollTrigger: { trigger: c, start: 'top 85%' } });
     });
-    $$('.nick').forEach(sec => {
+    if (innerWidth >= 700) $$('.nick').forEach(sec => {
       const mark = $('.nick__mark', sec);
       if (mark) gsap.fromTo(mark, { rotate: -20 }, { rotate: 15, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } });
     });
-    $$('.cta-band').forEach(sec => gsap.fromTo($('.cta-band__mark', sec), { rotate: -30, scale: 0.85 }, { rotate: 10, scale: 1.05, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } }));
+    if (innerWidth >= 700) $$('.cta-band').forEach(sec => gsap.fromTo($('.cta-band__mark', sec), { rotate: -30, scale: 0.85 }, { rotate: 10, scale: 1.05, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } }));
   });
 
   /* ---------- About: the usual way gets struck through ---------- */
