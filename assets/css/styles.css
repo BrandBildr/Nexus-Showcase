@@ -931,3 +931,18 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
 .cases__grid--3 .case__facts { grid-template-columns: 1fr 1fr 1fr; }
 @media (max-width: 1100px) { .cases__grid--3 { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 700px) { .cases__grid--3, .logos--names { grid-template-columns: 1fr; } .logos--names li { height: 60px; } }
+
+/* Nick without a headshot (Oct 2026) */
+.nick { position: relative; overflow: hidden; }
+.nick__grid--solo { grid-template-columns: 1fr; }
+.nick__grid--solo .nick__copy { max-width: 760px; position: relative; z-index: 1; }
+.nick__mark--bg { width: min(640px, 70vw); left: auto; right: -8%; top: 50%; translate: 0 -50%; opacity: .1; }
+.nick__role { margin: 0 0 -10px; color: var(--brass); font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+@media (max-width: 700px) { .nick__mark--bg { right: -30%; opacity: .07; } }
+.logos--brands { grid-template-columns: repeat(3, 1fr); }
+.logos--brands li { height: 116px; padding: 22px 28px; }
+.logos--brands img { display: block; height: 64px; width: 100%; max-width: 240px; object-fit: contain; opacity: .78; transition: opacity .3s; }
+.logos--brands li:hover img { opacity: 1; }
+@media (max-width: 700px) { .logos--brands { grid-template-columns: 1fr; } .logos--brands li { height: 92px; } .logos--brands img { height: 52px; } }
+.logos--brands img[src*="client-gbs"] { height: 80px; }
+@media (max-width: 700px) { .logos--brands img[src*="client-gbs"] { height: 64px; } }
