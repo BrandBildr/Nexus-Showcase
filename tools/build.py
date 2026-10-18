@@ -40,7 +40,7 @@ PAGES = [
      False, "page-home"),
     ("about", "about/index.html", "/about/",
      "About | Nexus Resourcing Group",
-     "Built on more than twenty years of marine resourcing experience. A proactive take on supplying skilled people to complex projects.",
+     "Built on more than twenty years of marine and defence experience. A proactive take on supplying skilled people to complex projects.",
      True, ""),
     ("sectors", "sectors/index.html", "/sectors/",
      "Sectors | Nexus Resourcing Group",

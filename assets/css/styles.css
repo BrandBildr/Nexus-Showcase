@@ -917,3 +917,17 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
 @media (max-width: 700px) {
   .wmap__dot { left: -20px; top: -20px; width: 40px; height: 40px; }
 }
+
+/* Nick's content (Oct 2026): vacancy details, qualifications, client names, 3-up cases */
+.vac__facts { margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 20px; max-width: 760px; }
+.vac__facts dt { font-size: .74rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-70); }
+.vac__facts dd { margin: 3px 0 0; font-weight: 700; font-size: .92rem; }
+.vac__count { font-weight: 600; opacity: .55; margin-left: 4px; font-size: .85em; }
+.nick__quals { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.nick__quals li { padding: 7px 14px; border: 1px solid rgba(229,188,104,.45); border-radius: 999px; color: var(--brass); font-size: .82rem; font-weight: 600; }
+.logos--names { grid-template-columns: repeat(3, 1fr); }
+.logos--names li { color: var(--ink); font-weight: 800; font-size: clamp(.95rem, 1.6vw, 1.2rem); letter-spacing: .06em; text-transform: uppercase; text-align: center; padding: 0 12px; }
+.cases__grid--3 { grid-template-columns: repeat(3, 1fr); }
+.cases__grid--3 .case__facts { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 1100px) { .cases__grid--3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .cases__grid--3, .logos--names { grid-template-columns: 1fr; } .logos--names li { height: 60px; } }

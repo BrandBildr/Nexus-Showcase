@@ -11,12 +11,10 @@ from pathlib import Path
 # name, detail line, lat, lon, label side ("l", "r" or "t"); LIVE = places with open vacancies
 LOCATIONS = [
     ("Plymouth, UK", "Head office", 50.37, -4.14, "t"),
-    ("Romania", "Europe", 44.17, 28.63, "r"),
-    ("Nashville, USA", "North America", 36.16, -86.78, "l"),
-    ("The Bahamas", "Caribbean", 25.06, -77.35, "r"),
-    ("Brazil", "South America", -22.9, -43.2, "r"),
+    ("Mississippi, USA", "Cruise ship assembly", 30.37, -88.56, "l"),
+    ("Grand Bahama", "Cruise ship repair", 26.53, -78.70, "r"),
 ]
-LIVE = {"Plymouth, UK", "The Bahamas"}
+LIVE = {"Plymouth, UK", "Mississippi, USA"}
 LAT_TOP, LAT_BOT, LON_L, LON_R = 74, -56, -170, 190
 STEP = 2.0
 W = (LON_R - LON_L) / STEP
