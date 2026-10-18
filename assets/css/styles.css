@@ -1035,3 +1035,22 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
 }
 
 .is-offscreen, .is-offscreen *, .is-offscreen *::before, .is-offscreen *::after { animation-play-state: paused !important; }
+
+/* Contact buttons: call, email, WhatsApp */
+.cbtns { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; max-width: 420px; }
+.cbtn { display: flex; align-items: center; gap: 14px; padding: 12px 18px 12px 12px; border-radius: 16px; background: #fff; border: 1px solid rgba(13,9,7,.1); text-decoration: none; color: var(--ink); box-shadow: 0 1px 0 rgba(13,9,7,.04); transition: transform .35s var(--ease), border-color .35s, box-shadow .35s; }
+.cbtn:hover { transform: translateY(-2px); border-color: var(--brass); box-shadow: 0 10px 24px -14px rgba(13,9,7,.35); }
+.cbtn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.cbtn__icon { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--ink); }
+.cbtn__icon svg { width: 21px; height: 21px; fill: var(--champagne); }
+.cbtn__icon .cbtn__stroke { fill: none; stroke: var(--champagne); stroke-width: 1.9; stroke-linejoin: round; stroke-linecap: round; }
+.cbtn__text { display: grid; gap: 1px; font-weight: 700; font-size: 1.02rem; min-width: 0; overflow-wrap: anywhere; }
+.cbtn__text small { font-size: .74rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--bronze); }
+.cbtn::after { content: ""; margin-left: auto; width: 9px; height: 9px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); opacity: .35; transition: opacity .3s, transform .35s var(--ease); flex: none; }
+.cbtn:hover::after { opacity: .8; transform: translateX(3px) rotate(45deg); }
+.cbtn--wa .cbtn__icon { background: #25D366; }
+.cbtn--wa .cbtn__wa-bubble { fill: none; stroke: #fff; stroke-width: 1.8; stroke-linejoin: round; }
+.cbtn--wa .cbtn__wa-phone { fill: #fff; }
+.cbtn--wa:hover { border-color: #25D366; }
+.cbtns--lg .cbtn { padding: 14px 20px 14px 14px; }
+.cbtns--lg .cbtn__text { font-size: 1.12rem; }
