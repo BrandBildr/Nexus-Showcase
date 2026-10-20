@@ -88,7 +88,7 @@ SCHEMA = """  <script type="application/ld+json">
       "addressCountry": "GB"
     },
     "areaServed": ["GB", "Worldwide"],
-    "founder": { "@type": "Person", "name": "Nick Souness", "jobTitle": "Managing Director" },
+    "founder": { "@type": "Person", "name": "Nick Souness", "jobTitle": "Managing Director", "image": "https://nexusrg.co.uk/assets/img/nick-souness-600.webp" },
     "knowsAbout": ["Marine resourcing", "Commercial resourcing", "Domestic resourcing", "Defence resourcing"]
   }
   </script>

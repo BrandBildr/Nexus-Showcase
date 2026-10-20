@@ -1054,3 +1054,4 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
 .cbtn--wa:hover { border-color: #25D366; }
 .cbtns--lg .cbtn { padding: 14px 20px 14px 14px; }
 .cbtns--lg .cbtn__text { font-size: 1.12rem; }
+.nick__frame .nick__img { height: 100%; object-position: 50% 0; }
