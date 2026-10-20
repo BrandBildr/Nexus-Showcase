@@ -525,6 +525,7 @@
     const drop = $('[data-drop]', reg);
     const file = $('#c-cv');
     const zone = $('.drop__zone', drop), chosen = $('.drop__file', drop), name = $('.drop__name', drop);
+    zone.addEventListener('click', () => file.click());
     const MAX = 8 * 1024 * 1024;
     const showFile = () => {
       const f = file.files[0];
