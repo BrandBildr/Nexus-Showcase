@@ -3,7 +3,8 @@
 Static site deployed by Netlify from this repo.
 
 - `main` is live on nexusrg.co.uk (currently the holding page in `placeholder/`).
-- `staging` is the full site in progress, at staging--nexusshowcase.netlify.app.
+- `preview` is the full site in progress, at preview--nexusshowcase.netlify.app.
+- `staging` is retired: it only serves a "no longer available" page.
 
 ## Editing pages
 Page content lives in `tools/pages/*.html`, and shared pieces (contact card) in `tools/partials/`.
