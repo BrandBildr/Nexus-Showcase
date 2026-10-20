@@ -2,8 +2,8 @@
 
 Static site deployed by Netlify from this repo.
 
-- `main` is live on nexusrg.co.uk (currently the holding page in `placeholder/`).
-- `preview` is the full site in progress, at preview--nexusshowcase.netlify.app.
+- `main` is the live site on nexusrg.co.uk (launched 20 October 2026).
+- `preview` is retired. Make future changes on a branch, check them on its Netlify branch link, then merge to `main`.
 - `staging` is retired: it only serves a "no longer available" page.
 
 ## Editing pages
@@ -33,5 +33,4 @@ Anything with `class="ph"` is placeholder content shown with a dashed gold outli
 ## Before going live
 - Set Nick's real booking link in `CAL_URL` at the top of `assets/js/main.js`.
 - Netlify Forms: two forms, `enquiry` and `candidate-registration` (with CV upload). Turn on form detection and add email notifications in Netlify.
-- Remove the `X-Robots-Tag: noindex` header in `netlify.toml` and the holding-page redirect on `main`.
 - Have Nexus review the privacy policy.
