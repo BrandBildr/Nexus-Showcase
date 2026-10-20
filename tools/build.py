@@ -244,6 +244,13 @@ FOOTER = """
       <p>&copy; <span data-year>2026</span> Nexus Resourcing Group Limited. Registered in England and Wales, company no. 17426336. Registered office: 51 Burnham Park Road, Plymouth, PL3 5QB.</p>
       <p><a href="/privacy/">Privacy &amp; cookies</a></p>
     </div>
+    <div class="wrap foot__credit">
+      <a href="https://brandbildr.com" target="_blank" rel="noopener">
+        <span class="foot__credit-text">Website and brand developed by</span>
+        <img src="/assets/img/brandbildr-mark.png" alt="" width="57" height="48" loading="lazy" decoding="async">
+        <span class="foot__credit-name">BrandBildr<sup>™</sup></span>
+      </a>
+    </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>

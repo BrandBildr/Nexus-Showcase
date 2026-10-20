@@ -1081,3 +1081,17 @@ html.menu-lock, html.menu-lock body { overflow: hidden; }
   .wmap__dot { left: -22px; top: -22px; width: 44px; height: 44px; }
   .quickbar__wa { width: 44px; height: 44px; }
 }
+
+/* Footer credit: BrandBildr */
+.foot__credit { display: flex; justify-content: flex-end; padding-top: 18px; }
+.foot__credit a { display: inline-flex; align-items: center; gap: 8px; padding: 6px 0; text-decoration: none; font-size: .72rem; letter-spacing: .06em; color: rgba(251,251,249,.38); transition: color .4s var(--ease); }
+.foot__credit img { height: 12px; width: auto; filter: grayscale(1) brightness(2.2); opacity: .5; transition: filter .5s var(--ease), opacity .5s var(--ease), transform .6s var(--ease); }
+.foot__credit-name { position: relative; font-weight: 700; letter-spacing: .02em; color: rgba(251,251,249,.62); transition: color .4s var(--ease); }
+.foot__credit-name sup { font-size: .55em; margin-left: 1px; font-weight: 600; }
+.foot__credit-name::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px; background: linear-gradient(90deg, #2A47ED, #6E86FF); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease); }
+.foot__credit a:hover, .foot__credit a:focus-visible { color: rgba(251,251,249,.6); }
+.foot__credit a:hover img, .foot__credit a:focus-visible img { filter: none; opacity: 1; transform: rotate(-8deg) scale(1.08); }
+.foot__credit a:hover .foot__credit-name, .foot__credit a:focus-visible .foot__credit-name { color: var(--bone); }
+.foot__credit a:hover .foot__credit-name::after, .foot__credit a:focus-visible .foot__credit-name::after { transform: scaleX(1); }
+@media (max-width: 700px) { .foot__credit { justify-content: flex-start; padding-top: 10px; } .foot__credit a { flex-wrap: wrap; } }
+@media (prefers-reduced-motion: reduce) { .foot__credit * { transition: none !important; } }
