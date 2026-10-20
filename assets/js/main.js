@@ -49,6 +49,8 @@
       if (!target) return;
       e.preventDefault();
       if (a.dataset.contactTab && window.__setContactTab) window.__setContactTab(a.dataset.contactTab, false);
+      // "Apply for this role" links on the same page carry the role in the query string
+      if (url.search && window.__applyRole) window.__applyRole(url.search);
       closeMenu(false);
       scrollToEl(target);
       history.replaceState(null, '', url.hash === '#top' ? location.pathname : url.hash);
@@ -317,24 +319,44 @@
       if (!pin && small.matches) pin = pins[0];
       pins.forEach(p => p.classList.toggle('is-active', p === pin));
       legend.forEach(b => b.setAttribute('aria-pressed', pins[+b.dataset.pin] === pin));
+      if (pin) requestAnimationFrame(() => keepInside(pin));
     };
+    // nudge a label back inside the visible map if it would hang off the edge
+    const frame = $('.wmap__frame', map);
+    const keepInside = pin => {
+      const label = $('.wmap__label', pin);
+      if (!label || !frame) return;
+      label.style.setProperty('--nudge', '0px');
+      const f = frame.getBoundingClientRect(), r = label.getBoundingClientRect(), pad = 10;
+      let dx = 0;
+      if (r.left < f.left + pad) dx = f.left + pad - r.left;
+      else if (r.right > f.right - pad) dx = f.right - pad - r.right;
+      label.style.setProperty('--nudge', Math.round(dx) + 'px');
+    };
+    addEventListener('resize', () => pins.forEach(p => p.classList.contains('is-active') && keepInside(p)));
+    const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
     pins.forEach(pin => {
       const dot = $('.wmap__dot', pin);
-      ['mouseenter', 'focus', 'click'].forEach(ev => dot.addEventListener(ev, () => activate(pin)));
+      // hover only where there is a real mouse; on touch screens a tap would otherwise be undone straight away
+      (finePointer ? ['mouseenter', 'focus', 'click'] : ['focus', 'click']).forEach(ev => dot.addEventListener(ev, () => activate(pin)));
     });
     legend.forEach(b => b.addEventListener('click', () => activate(pins[+b.dataset.pin])));
-    map.addEventListener('mouseleave', () => activate(null));
+    if (finePointer) map.addEventListener('mouseleave', () => activate(null));
     small.addEventListener('change', () => activate(null));
     activate(null);
   });
 
   /* ---------- candidates: arriving from a vacancy fills in the role ---------- */
-  const params = new URLSearchParams(location.search);
-  if (params.get('role') && $('#c-trade')) {
+  const applyRole = search => {
+    const params = new URLSearchParams(search);
+    if (!params.get('role') || !$('#c-trade')) return;
     $('#c-trade').value = params.get('role');
     const msg = $('#c-msg');
-    if (msg && !msg.value) msg.value = `Applying for: ${params.get('role')}${params.get('loc') ? ' (' + params.get('loc') + ')' : ''}`;
-  }
+    const line = `Applying for: ${params.get('role')}${params.get('loc') ? ' (' + params.get('loc') + ')' : ''}`;
+    if (msg && (!msg.value || msg.value.startsWith('Applying for:'))) msg.value = line;
+  };
+  window.__applyRole = applyRole;
+  applyRole(location.search);
 
   /* ---------- arriving with a #hash from another page ---------- */
   if (location.hash && location.hash.length > 1) {
