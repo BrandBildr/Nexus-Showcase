@@ -112,13 +112,18 @@ def head(title, desc, path, key):
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{desc}">
   <meta property="og:url" content="{canonical}">
-  <meta property="og:image" content="{SITE}/assets/img/og-image.jpg?v=1">
+  <meta property="og:image" content="{SITE}/assets/img/og-image.jpg?v=2">
+  <meta property="og:image:secure_url" content="{SITE}/assets/img/og-image.jpg?v=2">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Nexus Resourcing Group logo">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
-  <link rel="apple-touch-icon" href="/assets/img/favicon.png">
+  <meta name="twitter:image" content="{SITE}/assets/img/og-image.jpg?v=2">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="{FONTS}" rel="stylesheet">{preload}
