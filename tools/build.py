@@ -96,6 +96,10 @@ SCHEMA = """  <script type="application/ld+json">
 
 
 def head(title, desc, path, key):
+    # the homepage shares with the same short title and line as the original holding page
+    og_title = "Nexus Resourcing Group" if key == "home" else title
+    og_desc = ("Connecting talent. Powering projects. Skilled people for commercial, domestic, marine and defence projects."
+               if key == "home" else desc)
     preload = '\n  <link rel="preload" as="image" href="/assets/img/hero-ship.webp" imagesrcset="/assets/img/hero-ship-1200.webp 1200w, /assets/img/hero-ship.webp 2480w" imagesizes="100vw">' if key == "home" else ""
     canonical = f"{SITE}{path}" if key != "404" else SITE + "/"
     return f"""<!doctype html>
@@ -109,8 +113,8 @@ def head(title, desc, path, key):
   <meta name="theme-color" content="#0D0907">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Nexus Resourcing Group">
-  <meta property="og:title" content="{title}">
-  <meta property="og:description" content="{desc}">
+  <meta property="og:title" content="{og_title}">
+  <meta property="og:description" content="{og_desc}">
   <meta property="og:url" content="{canonical}">
   <meta property="og:image" content="{SITE}/assets/img/og-image.jpg?v=2">
   <meta property="og:image:secure_url" content="{SITE}/assets/img/og-image.jpg?v=2">
