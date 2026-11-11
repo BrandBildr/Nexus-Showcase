@@ -21,6 +21,7 @@ def ver(rel):
 
 CSS_V = ver("assets/css/styles.css")
 JS_V = ver("assets/js/main.js")
+V2_V = ver("assets/css/v2.css")
 PAGES_DIR = ROOT / "tools" / "pages"
 PARTIALS_DIR = ROOT / "tools" / "partials"
 SITE = "https://nexusrg.co.uk"
@@ -132,6 +133,7 @@ def head(title, desc, path, key):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="{FONTS}" rel="stylesheet">{preload}
   <link rel="stylesheet" href="/assets/css/styles.css?v={CSS_V}">
+  <link rel="stylesheet" href="/assets/css/v2.css?v={V2_V}">
 {SCHEMA if key == "home" else ""}
   <script>
     // Hide animated elements before first paint, only when motion is welcome.
