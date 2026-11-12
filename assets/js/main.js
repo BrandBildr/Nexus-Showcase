@@ -84,7 +84,7 @@
   /* ---------- pause looping pulses while they're off screen ---------- */
   if ('IntersectionObserver' in window) {
     const loopIo = new IntersectionObserver(entries => entries.forEach(en => en.target.classList.toggle('is-offscreen', !en.isIntersecting)));
-    $$('.hero__scroll, .wmap, .hiring, .sector').forEach(el => loopIo.observe(el));
+    $$('.wmap, .hiring, .sector').forEach(el => loopIo.observe(el));
   }
 
   /* ---------- mobile quick-contact bar ---------- */
@@ -150,56 +150,109 @@
     return $$('.w > span', h);
   };
 
-  /* ---------- home hero: the letters converge ---------- */
+  /* ---------- headings rise line by line behind a mask ---------- */
+  // Split once, animate, then put the original text back so resizing never breaks the lines
+  const lineReveal = (h, opts = {}) => {
+    const original = h.innerHTML;
+    const words = h.textContent.trim().split(/\s+/);
+    h.innerHTML = words.map(w => `<span class="lw">${w}</span>`).join(' ');
+    const lines = [];
+    $$('.lw', h).forEach(w => {
+      const top = Math.round(w.offsetTop);
+      const last = lines[lines.length - 1];
+      if (!last || Math.abs(last.top - top) > 4) lines.push({ top, words: [w.textContent] });
+      else last.words.push(w.textContent);
+    });
+    h.setAttribute('aria-label', h.textContent.trim());
+    h.innerHTML = lines.map(l => `<span class="ln" aria-hidden="true"><span>${l.words.join(' ')}</span></span>`).join('');
+    const inner = $$('.ln > span', h);
+    return gsap.fromTo(inner, { yPercent: 105 }, {
+      yPercent: 0, duration: opts.duration || 1, ease: 'power4.out', stagger: 0.09, delay: opts.delay || 0,
+      scrollTrigger: opts.trigger === false ? undefined : { trigger: h, start: 'top 88%', once: true },
+      onComplete: () => { h.innerHTML = original; h.removeAttribute('aria-label'); }
+    });
+  };
+
+  if (animate) safely(() => {
+    $$('.phero__title, h2.display, [data-lines]').filter((h, i, all) => all.indexOf(h) === i).forEach(h => {
+      const above = h.closest('.hero, .phero');
+      lineReveal(h, above ? { trigger: false, delay: 0.15, duration: 1.2 } : {});
+    });
+  });
+
+  /* ---------- home hero: the logo letters converge ---------- */
   if ($('.hero') && animate) safely(() => {
     // Full sequence on the first visit in a session, a quicker one after that
     let seen = false;
     try { seen = sessionStorage.getItem('nx-intro') === '1'; sessionStorage.setItem('nx-intro', '1'); } catch (_) {}
     const k = seen ? 0.45 : 1;
-    const wms = $$('.wm');
     const small = innerWidth < 700;
-    const spread = Math.min(window.innerWidth * 0.16, 220);
-    const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.15 * k });
-    tl.fromTo('.hero__img', { scale: 1.18 }, { scale: 1.04, duration: 3.2 * k, ease: 'power2.out' }, 0)
-      .fromTo(wms,
-        { opacity: 0, x: i => (i - 2) * spread * 2.2, filter: small ? 'none' : 'blur(14px)' },
+    const spread = Math.min(innerWidth * 0.16, 220);
+    gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.15 * k })
+      .fromTo('.hero__img', { scale: small ? 1.05 : 1.14 }, { scale: small ? 1 : 1.02, duration: 3 * k, ease: 'power2.out' }, 0)
+      .fromTo('.wm',
+        { opacity: 0, x: i => (i - 2) * spread * 2.2, filter: small ? 'none' : 'blur(12px)' },
         { opacity: 1, x: 0, filter: small ? 'none' : 'blur(0px)', duration: 1.8 * k, stagger: { each: 0.06 * k, from: 'edges' } }, 0.25 * k)
       .fromTo('.wm--x', { rotate: -90, scale: 1.4 }, { rotate: 0, scale: 1, duration: 1.6 * k }, 0.35 * k)
-      .fromTo('.hero__icon', { opacity: 0, scale: 0.55, rotate: -45, y: 20 }, { opacity: 1, scale: 1, rotate: 0, y: 0, duration: 1.6 * k }, 0.9 * k)
+      .fromTo('.hero__icon', { opacity: 0, scale: 0.6, rotate: -40, y: 16 }, { opacity: 1, scale: 1, rotate: 0, y: 0, duration: 1.6 * k }, 0.9 * k)
       .fromTo('.hero__shine', { backgroundPosition: '150% 0' }, { backgroundPosition: '-60% 0', duration: 1.6, ease: 'power2.inOut' }, 1.7 * k)
       .to('.hero__group .rule', { scaleX: 1, duration: 1.2 * k }, 1.3 * k)
       .fromTo('.hero__group-text', { opacity: 0, letterSpacing: '0.9em' }, { opacity: 1, letterSpacing: '0.42em', duration: 1.4 * k }, 1.3 * k)
       .fromTo('.hero__tag', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1 * k }, 1.75 * k)
-      .fromTo('.hero__ctas > *', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 1 * k, stagger: 0.1 * k }, 1.95 * k)
-      .to('.hero__scroll', { opacity: 1, duration: 1 }, 2.4 * k);
+      .fromTo('.hero__ctas > *', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1 * k, stagger: 0.1 * k }, 1.95 * k)
+      .fromTo('.hero__links a', { opacity: 0 }, { opacity: 1, duration: 1 * k, stagger: 0.08 * k }, 2.15 * k);
+  });
 
-    gsap.to('.hero__media', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    gsap.to('.hero__content', { y: -90, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: '75% top', scrub: true } });
+  /* ---------- swipe rails: a progress line shows there's more to see ---------- */
+  safely(() => {
+    $$('.srows, .cases__grid--3').forEach(rail => {
+      const track = document.createElement('div');
+      track.className = 'rail-track'; track.setAttribute('aria-hidden', 'true');
+      track.innerHTML = '<span></span>';
+      rail.after(track);
+      const fill = track.firstChild;
+      const set = () => {
+        const max = rail.scrollWidth - rail.clientWidth;
+        const seen = max > 0 ? (rail.clientWidth + rail.scrollLeft) / rail.scrollWidth : 1;
+        fill.style.transform = `scaleX(${Math.min(1, seen)})`;
+      };
+      rail.addEventListener('scroll', set, { passive: true });
+      addEventListener('resize', set);
+      set();
+    });
+  });
+
+  /* ---------- reading progress: a thin brass line under the nav ---------- */
+  safely(() => {
+    const bar = document.createElement('div');
+    bar.className = 'progress'; bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    let ticking = false;
+    const set = () => {
+      ticking = false;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(set); } }, { passive: true });
+    set();
+  });
+
+  /* ---------- promise panels: each one settles back as the next slides over ---------- */
+  if ($('.vstack') && animate) safely(() => {
+    const cards = $$('.vcard');
+    cards.slice(0, -1).forEach((c, i) => {
+      gsap.to($('.vcard__in', c), {
+        scale: 0.94, opacity: 0.35, ease: 'none',
+        scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top top', scrub: true }
+      });
+    });
   });
 
   /* ---------- inner page hero: one orchestrated entrance ---------- */
   if ($('.phero') && animate) safely(() => {
-    const h = $('.phero__title[data-split]');
-    const words = h ? splitWords(h) : [];
-    const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.05 });
-    tl.fromTo('.phero__kicker', { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 1 }, 0);
-    if (words.length) tl.from(words, { yPercent: 110, duration: 1.2, stagger: 0.05 }, 0.1);
-    tl.fromTo('.phero__lede', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.1 }, 0.5)
-      .fromTo('.phero__actions', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.1 }, 0.62)
-      .fromTo('.phero__media', { opacity: 0, clipPath: 'inset(0 0 100% 0 round 22px)' }, { opacity: 1, clipPath: 'inset(0 0 0% 0 round 22px)', duration: 1.4, ease: 'expo.inOut' }, 0.2)
-      .fromTo('.mosaic img', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.2, stagger: 0.08 }, 0.25)
-      .set('.mosaic', { opacity: 1 }, 0.25)
-      .fromTo('.phero__mark', { rotate: -25, opacity: 0 }, { rotate: 0, opacity: 0.045, duration: 2.2 }, 0);
-
-    if (innerWidth >= 700) gsap.to('.phero__mark', { rotate: 18, ease: 'none', scrollTrigger: { trigger: '.phero', start: 'top top', end: 'bottom top', scrub: true } });
-    if ($('.phero__media img')) gsap.fromTo('.phero__media img', { yPercent: -6 }, { yPercent: 4, ease: 'none', scrollTrigger: { trigger: '.phero', start: 'top top', end: 'bottom top', scrub: true } });
-  });
-
-  /* ---------- section headings (home about) ---------- */
-  if (animate) safely(() => {
-    $$('.about__title[data-split]').forEach(h => {
-      gsap.from(splitWords(h), { yPercent: 110, duration: 1.1, ease: 'expo.out', stagger: 0.04, scrollTrigger: { trigger: h, start: 'top 80%' } });
-    });
+    gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.8 }, delay: 0.05 })
+      .fromTo(['.phero__kicker', '.phero__lede', '.phero__actions'], { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: 0.07 }, 0)
+      .fromTo(['.phero__media', '.mosaic'], { opacity: 0 }, { opacity: 1, duration: 1 }, 0.15);
   });
 
   /* ---------- process steps: the line fills as you read ---------- */
@@ -221,11 +274,6 @@
       const obj = { v: 0 };
       gsap.to(obj, { v: +c.dataset.to, duration: 1.6, ease: 'power3.out', onUpdate: () => (c.textContent = Math.round(obj.v)), scrollTrigger: { trigger: c, start: 'top 85%' } });
     });
-    if (innerWidth >= 700) $$('.nick').forEach(sec => {
-      const mark = $('.nick__mark', sec);
-      if (mark) gsap.fromTo(mark, { rotate: -20 }, { rotate: 15, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } });
-    });
-    if (innerWidth >= 700) $$('.cta-band').forEach(sec => gsap.fromTo($('.cta-band__mark', sec), { rotate: -30, scale: 0.85 }, { rotate: 10, scale: 1.05, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } }));
   });
 
   /* ---------- About: the usual way gets struck through ---------- */

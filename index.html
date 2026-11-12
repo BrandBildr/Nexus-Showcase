@@ -29,6 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="/assets/img/hero-ship.webp" imagesrcset="/assets/img/hero-ship-1200.webp 1200w, /assets/img/hero-ship.webp 2480w" imagesizes="100vw">
   <link rel="stylesheet" href="/assets/css/styles.css?v=1c02c514">
+  <link rel="stylesheet" href="/assets/css/v2.css?v=59b56a5e">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -76,6 +77,7 @@
       <a href="/about/">About</a>
       <a href="/sectors/">Sectors</a>
       <a href="/candidates/">Candidates<span class="nav__live" title="Recruiting now" aria-label="(recruiting now)"></span></a>
+      <a href="/blog/">Blog</a>
       <a href="/contact/">Contact</a>
     </nav>
     <a class="btn btn--gold btn--sm nav__cta" href="/contact/">Book a chat</a>
@@ -92,6 +94,7 @@
         <li><a href="/about/">About</a></li>
         <li><a href="/sectors/">Sectors</a></li>
         <li><a href="/candidates/">Candidates<span class="nav__live" title="Recruiting now" aria-label="(recruiting now)"></span></a></li>
+        <li><a href="/blog/">Blog</a></li>
         <li><a href="/contact/">Contact</a></li>
       </ul>
       <div class="menu__foot">
@@ -103,7 +106,7 @@
 
   <main id="main">
     <!-- HERO -->
-    <section class="hero" id="top">
+    <section class="hero hero--logo" id="top">
       <div class="hero__media" aria-hidden="true">
         <img src="/assets/img/hero-ship.webp" srcset="/assets/img/hero-ship-1200.webp 1200w, /assets/img/hero-ship.webp 2480w" sizes="100vw" alt="" class="hero__img" width="2480" height="1010" fetchpriority="high">
       </div>
@@ -111,7 +114,7 @@
 
       <div class="hero__content">
         <h1 class="hero__title">
-          <span class="sr-only">Nexus Resourcing Group</span>
+          <span class="sr-only">Nexus Resourcing Group: skilled people for commercial, domestic, marine and defence projects</span>
           <span class="hero__icon" aria-hidden="true">
             <img src="/assets/img/icon-gold.webp" alt="" width="900" height="712">
             <span class="hero__shine"></span>
@@ -127,91 +130,65 @@
             <span class="rule"></span><span class="hero__group-text">Resourcing Group</span><span class="rule"></span>
           </span>
         </h1>
-        <p class="hero__tag"><span>Connecting talent.</span> <span>Powering projects.</span></p>
+        <p class="hero__tag">Connecting talent. Powering projects.</p>
         <div class="hero__ctas">
           <a class="btn btn--gold" href="#contact" data-contact-tab="call">Book a chat with Nick</a>
-          <a class="btn btn--ghost" href="#contact" data-contact-tab="enquiry">Send an enquiry</a>
+          <a class="btn btn--ghost" href="#vacancies">See live roles</a>
         </div>
       </div>
 
-      <a class="hero__scroll" href="#about" aria-label="Scroll to about">
-        <span></span>
-      </a>
     </section>
 
     <!-- ABOUT -->
-    <section class="about" id="about">
+    <section class="about about--v4" id="about">
       <div class="wrap about__grid">
-        <h2 class="display about__title" data-split>Specialist resource for complex projects, in the UK and worldwide.</h2>
-        <div class="about__body">
-          <p class="lede">Nexus Resourcing Group supplies skilled, vetted people to commercial, domestic, marine and defence projects. It's built on more than twenty years of marine and defence experience, and on being there when a project needs us most.</p>
-          <a class="textlink" href="/about/">How we work</a>
+        <div class="about__copy">
+          <h2 class="display about__title" data-lines>Specialist resource for complex projects, in the UK and worldwide.</h2>
+          <p>Skilled, vetted people for commercial, domestic, marine and defence projects. Built on more than twenty years of marine and defence experience, and on being there when a project needs us most.</p>
+          <a class="btn btn--line" href="/about/">How we work</a>
         </div>
+        <dl class="figures">
+          <div><dt>in marine and defence engineering</dt><dd>22 years</dd></div>
+          <div><dt>operatives on a single programme</dt><dd>100+</dd></div>
+          <div><dt>to mobilise a full team</dt><dd>2&ndash;4 weeks</dd></div>
+          <div><dt>UK, USA and the Bahamas</dt><dd>3 countries</dd></div>
+        </dl>
       </div>
 
-      <div class="wrap pillars">
-        <article class="pillar">
-          <svg class="pillar__icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="14" r="6"/><circle cx="11" cy="18" r="4.5"/><circle cx="37" cy="18" r="4.5"/><path d="M14 40v-8a10 10 0 0 1 20 0v8"/><path d="M4 38v-5a7 7 0 0 1 9-6.7M44 38v-5a7 7 0 0 0-9-6.7"/></svg>
-          <h3>Resource for complex projects</h3>
-          <p>From individual specialists to full project teams, matched to the demands of the job.</p>
-        </article>
-        <article class="pillar">
-          <svg class="pillar__icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M6 24h36M24 6c-6 6-6 30 0 36M24 6c6 6 6 30 0 36"/></svg>
-          <h3>Global reach</h3>
-          <p>Sourcing and mobilising people across the UK and internationally, wherever the project is.</p>
-        </article>
-        <article class="pillar">
-          <svg class="pillar__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 8 10v12c0 10 7 18 16 22 9-4 16-12 16-22V10z"/><path d="m16 24 6 6 11-12"/></svg>
-          <h3>Safety management</h3>
-          <p>Competence, compliance and safe working built into every placement.</p>
-        </article>
-      </div>
     </section>
 
     <!-- SECTORS -->
-    <section class="sectors" id="sectors">
-      <div class="wrap sectors__head">
-        <h2 class="display display--light">Four sectors.<br>One standard.</h2>
-        <p>Whatever the site, the people we place arrive vetted, ticketed and ready to work. Choose a sector to see where we help.</p>
+    <section class="srows-sec" id="sectors" aria-labelledby="sectors-title">
+      <div class="wrap sec-head">
+        <h2 class="display" id="sectors-title" data-lines>The sectors we supply</h2>
+        <p>Whatever the site, the people we place arrive vetted, ticketed and ready to work.</p>
       </div>
-
-      <div class="panels" role="group" aria-label="Sectors">
-        <button class="panel is-active" type="button" aria-expanded="true">
-          <img src="/assets/img/sector-marine.webp" alt="" loading="lazy" width="519" height="402" decoding="async">
-          <span class="panel__name">Marine</span>
-          <span class="panel__body" id="p-marine">
-            <span class="panel__title">Marine</span>
-            <span class="panel__text">Ship repair, refit and new build. Fitters, fabricators, electricians and marine engineers ready to mobilise to yard or vessel.</span>
-          </span>
-        </button>
-        <button class="panel" type="button" aria-expanded="false">
-          <img src="/assets/img/sector-commercial.webp" alt="" loading="lazy" width="535" height="414" decoding="async">
-          <span class="panel__name">Commercial</span>
-          <span class="panel__body" id="p-commercial">
-            <span class="panel__title">Commercial</span>
-            <span class="panel__text">Fit-out, construction and industrial packages where programme and quality both matter.</span>
-          </span>
-        </button>
-        <button class="panel" type="button" aria-expanded="false">
-          <img src="/assets/img/sector-domestic.webp" alt="" loading="lazy" width="532" height="417" decoding="async">
-          <span class="panel__name">Domestic</span>
-          <span class="panel__body" id="p-domestic">
-            <span class="panel__title">Domestic</span>
-            <span class="panel__text">Skilled trades for residential projects, from a single specialist to a full crew.</span>
-          </span>
-        </button>
-        <button class="panel" type="button" aria-expanded="false">
-          <img src="/assets/img/sector-defence.webp" alt="" loading="lazy" width="535" height="417" decoding="async">
-          <span class="panel__name">Defence</span>
-          <span class="panel__body" id="p-defence">
-            <span class="panel__title">Defence</span>
-            <span class="panel__text">Vetted, compliant people for defence programmes and secure environments, with the paperwork done properly.</span>
-          </span>
-        </button>
-      </div>
-      <div class="wrap sectors__more">
-        <a class="textlink textlink--light" href="/sectors/">See the roles we supply in each sector</a>
-      </div>
+      <ul class="wrap srows">
+        <li><a class="srow" href="/sectors/#marine">
+          <span class="srow__name">Marine</span>
+          <span class="srow__text">Ship repair, refit and new build. Fitters, fabricators, electricians and marine engineers ready to mobilise to yard or vessel.</span>
+          <img class="srow__img" src="/assets/img/sector-marine.webp" alt="" loading="lazy" width="519" height="402" decoding="async">
+          <svg class="srow__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 24h28M38 24 24 10M38 24 24 38"/></svg>
+        </a></li>
+        <li><a class="srow" href="/sectors/#commercial">
+          <span class="srow__name">Commercial</span>
+          <span class="srow__text">Fit-out, construction and industrial packages where programme and quality both matter.</span>
+          <img class="srow__img" src="/assets/img/sector-commercial.webp" alt="" loading="lazy" width="535" height="414" decoding="async">
+          <svg class="srow__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 24h28M38 24 24 10M38 24 24 38"/></svg>
+        </a></li>
+        <li><a class="srow" href="/sectors/#domestic">
+          <span class="srow__name">Domestic</span>
+          <span class="srow__text">Skilled trades for residential projects, from a single specialist to a full crew.</span>
+          <img class="srow__img" src="/assets/img/sector-domestic.webp" alt="" loading="lazy" width="532" height="417" decoding="async">
+          <svg class="srow__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 24h28M38 24 24 10M38 24 24 38"/></svg>
+        </a></li>
+        <li><a class="srow" href="/sectors/#defence">
+          <span class="srow__name">Defence</span>
+          <span class="srow__text">Vetted, compliant people for defence programmes and secure environments, with the paperwork done properly.</span>
+          <img class="srow__img" src="/assets/img/sector-defence.webp" alt="" loading="lazy" width="535" height="417" decoding="async">
+          <svg class="srow__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 24h28M38 24 24 10M38 24 24 38"/></svg>
+        </a></li>
+      </ul>
     </section>
 
     <!-- RECRUITING NOW -->
@@ -219,46 +196,69 @@
       <div class="wrap hiring__grid">
         <div class="hiring__intro">
           <p class="live live--lg"><span class="live__dot" aria-hidden="true"></span>Recruiting now</p>
-          <h2 class="display" id="hiring-title">Roles we're filling now</h2>
+          <h2 class="display" id="hiring-title" data-lines>Roles we're filling now</h2>
           <p>Live roles across our sectors. Tap a role for the details, apply in a couple of minutes, or message Nick directly.</p>
+          <p class="vac-updated">Roles updated 12 November 2026</p>
           <a class="textlink" href="/candidates/#vacancies">All vacancies and registration</a>
         </div>
         <!-- Active vacancies: add, edit or remove <li class="vac"> blocks here, then run tools/build.py -->
         <ul class="vacs" data-vacancies>
           <li class="vac">
-            <button type="button" class="vac__pill" aria-expanded="false" aria-controls="vac-fabricators-sw">
+            <button type="button" class="vac__pill" aria-expanded="false" aria-controls="vac-mississippi">
               <span class="live"><span class="live__dot" aria-hidden="true"></span>Recruiting now</span>
-              <span class="vac__role">Fabricators <span class="vac__count">x12</span></span>
-              <span class="vac__loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-7-7.6-7-13a7 7 0 0 1 14 0c0 5.4-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>South West, UK</span>
-              <span class="vac__tag">Defence</span>
+              <span class="vac__role">Welders and fitters <span class="vac__count">x38</span></span>
+              <span class="vac__loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-7-7.6-7-13a7 7 0 0 1 14 0c0 5.4-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Mississippi, USA</span>
+              <span class="vac__tag">Marine</span>
               <span class="vac__chev" aria-hidden="true"></span>
             </button>
-            <div class="vac__body" id="vac-fabricators-sw">
+            <div class="vac__body" id="vac-mississippi">
               <div class="vac__inner">
-                <p>Twelve fabricators needed for a defence programme in the South West of the UK. A 12-month contract with travel and accommodation included.</p>
-                <dl class="vac__facts"><div><dt>Start</dt><dd>October 2026</dd></div><div><dt>Length</dt><dd>12 months</dd></div><div><dt>Rate</dt><dd>£32.50 per hour</dd></div><div><dt>Shift rates</dt><dd>Backshift £40.00, weekend £41.00, nightshift £44.50</dd></div><div><dt>Travel and accommodation</dt><dd>Included</dd></div></dl>
+                <p>38 skilled trades needed on a project in Mississippi. Contracts run for 3 to 5 months on 70-hour weeks.</p>
+                <ul class="vac__list"><li><span class="vac__n">6</span> Pipe fitters</li><li><span class="vac__n">1</span> Pipe supervisor</li><li><span class="vac__n">17</span> Structural plate fitters</li><li><span class="vac__n">14</span> Structural welders</li></ul>
+                <dl class="vac__facts"><div><dt>Rate</dt><dd>$19 per hour</dd></div><div><dt>Hours</dt><dd>70 per week</dd></div><div><dt>Per diem</dt><dd>$20 per day</dd></div><div><dt>Paid</dt><dd>Every two weeks</dd></div><div><dt>Contract</dt><dd>3 to 5 months</dd></div></dl>
                 <div class="vac__actions">
-                  <a class="btn btn--dark btn--sm" href="/candidates/?role=Fabricator&amp;loc=South%20West%2C%20UK#register">Apply for this role</a>
-                  <a class="btn btn--line btn--sm" href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%27m%20interested%20in%20the%20Fabricator%20role%20in%20the%20South%20West." target="_blank" rel="noopener">WhatsApp Nick about this role</a>
+                  <a class="btn btn--dark btn--sm" href="/candidates/?role=Welder%20or%20fitter&amp;loc=Mississippi%2C%20USA#register">Apply for these roles</a>
+                  <a class="btn btn--line btn--sm" href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%27m%20interested%20in%20the%20welding%20and%20fitting%20roles%20in%20Mississippi." target="_blank" rel="noopener">WhatsApp Nick about these roles</a>
                 </div>
               </div>
             </div>
           </li>
           <li class="vac">
-            <button type="button" class="vac__pill" aria-expanded="false" aria-controls="vac-alltrades-mississippi">
+            <button type="button" class="vac__pill" aria-expanded="false" aria-controls="vac-louisiana">
               <span class="live"><span class="live__dot" aria-hidden="true"></span>Recruiting now</span>
-              <span class="vac__role">All trades</span>
-              <span class="vac__loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-7-7.6-7-13a7 7 0 0 1 14 0c0 5.4-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Mississippi, USA</span>
+              <span class="vac__role">Welders and fitters <span class="vac__count">x6</span></span>
+              <span class="vac__loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-7-7.6-7-13a7 7 0 0 1 14 0c0 5.4-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Louisiana, USA</span>
               <span class="vac__tag">Marine</span>
               <span class="vac__chev" aria-hidden="true"></span>
             </button>
-            <div class="vac__body" id="vac-alltrades-mississippi">
+            <div class="vac__body" id="vac-louisiana">
               <div class="vac__inner">
-                <p>Skilled trades needed for a major cruise ship assembly project in Mississippi. A 6-month contract with travel and accommodation included.</p>
-                <dl class="vac__facts"><div><dt>Start</dt><dd>November 2026</dd></div><div><dt>Length</dt><dd>6 months</dd></div><div><dt>Rate</dt><dd>$18 per hour</dd></div><div><dt>Travel and accommodation</dt><dd>Included</dd></div></dl>
+                <p>6 skilled trades needed on a project in Louisiana. Contracts run for 3 to 5 months on 70-hour weeks.</p>
+                <ul class="vac__list"><li><span class="vac__n">2</span> Structural welders</li><li><span class="vac__n">2</span> Aluminium welders</li><li><span class="vac__n">1</span> Pipe fitter</li><li><span class="vac__n">1</span> Pipe welder</li></ul>
+                <dl class="vac__facts"><div><dt>Rate</dt><dd>$19 per hour</dd></div><div><dt>Hours</dt><dd>70 per week</dd></div><div><dt>Per diem</dt><dd>$20 per day</dd></div><div><dt>Paid</dt><dd>Every two weeks</dd></div><div><dt>Contract</dt><dd>3 to 5 months</dd></div></dl>
                 <div class="vac__actions">
-                  <a class="btn btn--dark btn--sm" href="/candidates/?role=All%20trades&amp;loc=Mississippi%2C%20USA#register">Apply for this role</a>
-                  <a class="btn btn--line btn--sm" href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%27m%20interested%20in%20the%20All%20Trades%20roles%20in%20Mississippi." target="_blank" rel="noopener">WhatsApp Nick about this role</a>
+                  <a class="btn btn--dark btn--sm" href="/candidates/?role=Welder%20or%20fitter&amp;loc=Louisiana%2C%20USA#register">Apply for these roles</a>
+                  <a class="btn btn--line btn--sm" href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%27m%20interested%20in%20the%20welding%20and%20fitting%20roles%20in%20Louisiana." target="_blank" rel="noopener">WhatsApp Nick about these roles</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="vac">
+            <button type="button" class="vac__pill" aria-expanded="false" aria-controls="vac-florida">
+              <span class="live"><span class="live__dot" aria-hidden="true"></span>Recruiting now</span>
+              <span class="vac__role">Welders and fitters <span class="vac__count">x17</span></span>
+              <span class="vac__loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-7-7.6-7-13a7 7 0 0 1 14 0c0 5.4-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Florida, USA</span>
+              <span class="vac__tag">Marine</span>
+              <span class="vac__chev" aria-hidden="true"></span>
+            </button>
+            <div class="vac__body" id="vac-florida">
+              <div class="vac__inner">
+                <p>17 skilled trades needed on a project in Florida. Contracts run for 3 to 5 months on 70-hour weeks.</p>
+                <ul class="vac__list"><li><span class="vac__n">6</span> Pipe fitters</li><li><span class="vac__n">4</span> Pipe welders</li><li><span class="vac__n">4</span> Plate and structural fitters</li><li><span class="vac__n">3</span> Structural welders</li></ul>
+                <dl class="vac__facts"><div><dt>Rate</dt><dd>$19 per hour</dd></div><div><dt>Hours</dt><dd>70 per week</dd></div><div><dt>Per diem</dt><dd>$20 per day</dd></div><div><dt>Paid</dt><dd>Every two weeks</dd></div><div><dt>Contract</dt><dd>3 to 5 months</dd></div></dl>
+                <div class="vac__actions">
+                  <a class="btn btn--dark btn--sm" href="/candidates/?role=Welder%20or%20fitter&amp;loc=Florida%2C%20USA#register">Apply for these roles</a>
+                  <a class="btn btn--line btn--sm" href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%27m%20interested%20in%20the%20welding%20and%20fitting%20roles%20in%20Florida." target="_blank" rel="noopener">WhatsApp Nick about these roles</a>
                 </div>
               </div>
             </div>
@@ -270,7 +270,7 @@
     <!-- APPROACH -->
     <section class="approach" id="approach">
       <div class="wrap">
-        <h2 class="display">How a placement runs</h2>
+        <h2 class="display" data-lines>How a placement runs</h2>
         <div class="steps-wrap">
         <span class="steps__track" aria-hidden="true"><span class="steps__fill"></span></span>
         <ol class="steps">
@@ -299,32 +299,42 @@
       </div>
     </section>
 
-    <!-- VALUES BAND -->
-    <section class="band" aria-label="What we promise">
-      <ul class="wrap band__list">
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="12" r="6"/><circle cx="10" cy="16" r="4.5"/><circle cx="38" cy="16" r="4.5"/><path d="M15 42V29a9 9 0 0 1 18 0v13zM3 38v-8a7 7 0 0 1 9-6.5M45 38v-8a7 7 0 0 0-9-6.5"/></svg>
-          The right people
-        </li>
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 44S10 28 10 18a14 14 0 0 1 28 0c0 10-14 26-14 26z"/><circle cx="24" cy="18" r="5"/></svg>
-          The right place
-        </li>
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 8 10v12c0 10 7 18 16 22 9-4 16-12 16-22V10z"/><path d="m16 24 6 6 11-12"/></svg>
-          Safety &amp; compliance
-        </li>
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 42h36M10 36v-8M19 36V22M28 36V26M37 36V14M8 22l12-10 8 6 14-12M34 6h8v8"/></svg>
-          Results that deliver
-        </li>
-      </ul>
+    <!-- WHAT WE PROMISE -->
+    <section class="vstack" aria-label="What we promise">
+        <article class="vcard vcard--gold">
+          <div class="wrap vcard__in">
+            <svg class="vcard__icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="12" r="6"/><circle cx="10" cy="16" r="4.5"/><circle cx="38" cy="16" r="4.5"/><path d="M15 42V29a9 9 0 0 1 18 0v13zM3 38v-8a7 7 0 0 1 9-6.5M45 38v-8a7 7 0 0 0-9-6.5"/></svg>
+            <h3>The right people</h3>
+            <p>Tradespeople matched to the competencies the work needs, not just the job title.</p>
+          </div>
+        </article>
+        <article class="vcard vcard--brass">
+          <div class="wrap vcard__in">
+            <svg class="vcard__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 44S10 28 10 18a14 14 0 0 1 28 0c0 10-14 26-14 26z"/><circle cx="24" cy="18" r="5"/></svg>
+            <h3>The right place</h3>
+            <p>Travel, accommodation and inductions arranged, from Plymouth to the Bahamas.</p>
+          </div>
+        </article>
+        <article class="vcard vcard--bronze">
+          <div class="wrap vcard__in">
+            <svg class="vcard__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 8 10v12c0 10 7 18 16 22 9-4 16-12 16-22V10z"/><path d="m16 24 6 6 11-12"/></svg>
+            <h3>Safety and compliance</h3>
+            <p>Tickets, references and right to work checked before anyone sets foot on site.</p>
+          </div>
+        </article>
+        <article class="vcard vcard--ink">
+          <div class="wrap vcard__in">
+            <svg class="vcard__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 42h36M10 36v-8M19 36V22M28 36V26M37 36V14M8 22l12-10 8 6 14-12M34 6h8v8"/></svg>
+            <h3>Results that deliver</h3>
+            <p>Teams that hold the programme, with Nick checking in for the life of the project.</p>
+          </div>
+        </article>
     </section>
 
     <!-- WHERE WE WORK -->
     <section class="reach" id="reach" aria-labelledby="reach-title">
       <div class="wrap reach__head">
-        <h2 class="display display--light" id="reach-title">Plymouth based.<br>Working worldwide.</h2>
+        <h2 class="display display--light" id="reach-title" data-lines>Based in Plymouth, working worldwide</h2>
         <p>From the dockyards of the South West to projects across North America and the Caribbean, we connect skilled people to the work, wherever it is.</p>
       </div>
       <div class="wrap">
@@ -351,17 +361,37 @@
     <section class="proof" aria-labelledby="proof-title">
       <div class="wrap">
         <div class="proof__head">
-          <h2 class="display" id="proof-title">Trusted on site</h2>
+          <h2 class="display" id="proof-title" data-lines>Trusted on site</h2>
           <p>Some of the clients and projects we support.</p>
         </div>
 
+        <div class="clients">
         <ul class="logos logos--brands" aria-label="Clients">
           <li><img src="/assets/img/client-sms.png" alt="SMS Group" width="324" height="91" loading="lazy" decoding="async"></li>
           <li><img src="/assets/img/client-denholm.png" alt="Denholm Industrial Services" width="720" height="193" loading="lazy" decoding="async"></li>
           <li><img src="/assets/img/client-gbs.png" alt="Grand Bahama Shipyard" width="240" height="125" loading="lazy" decoding="async"></li>
         </ul>
+        </div>
 
-        <div class="proof__grid">
+        <div class="cases__grid cases__grid--3">
+          <article class="case">
+            <div class="case__media"><img src="/assets/img/sector-defence.webp" alt="" loading="lazy" width="535" height="417" decoding="async"></div>
+            <div class="case__body">
+              <p class="case__sector">Defence</p>
+              <h3>Core trades for a critical-path defence programme</h3>
+              <p>Fabricators, painters and blasters supplied to support the itinerant programme on a major defence project that sat on the critical path of its schedule.</p>
+              <dl class="case__facts"><div><dt>Location</dt><dd>South West, UK</dd></div><div><dt>Team</dt><dd>c. 20 operatives</dd></div><div><dt>Mobilised</dt><dd>2 to 4 weeks</dd></div></dl>
+            </div>
+          </article>
+          <article class="case">
+            <div class="case__media"><img src="/assets/img/sector-commercial.webp" alt="" loading="lazy" width="535" height="414" decoding="async"></div>
+            <div class="case__body">
+              <p class="case__sector">Marine</p>
+              <h3>Cruise ship assembly, USA</h3>
+              <p>Welders, fabricators, pipe welders and pipefitters supplied to a major cruise line assembly, drawing on Nexus's South American workforce.</p>
+              <dl class="case__facts"><div><dt>Location</dt><dd>North America</dd></div><div><dt>Team</dt><dd>80 to 100 operatives</dd></div><div><dt>Mobilised</dt><dd>3 to 4 weeks</dd></div></dl>
+            </div>
+          </article>
           <article class="case">
             <div class="case__media"><img src="/assets/img/case-cruise-liner.webp" srcset="/assets/img/case-cruise-liner-800.webp 800w, /assets/img/case-cruise-liner.webp 1400w" sizes="(max-width: 700px) 84vw, 40vw" alt="A large white cruise ship off a palm-lined shore" loading="lazy" width="1400" height="1077" decoding="async"></div>
             <div class="case__body">
@@ -371,12 +401,6 @@
               <dl class="case__facts"><div><dt>Location</dt><dd>Grand Bahama</dd></div><div><dt>Team</dt><dd>100+ operatives</dd></div><div><dt>Trades</dt><dd>All trades</dd></div></dl>
             </div>
           </article>
-
-          <figure class="quote">
-            <svg class="quote__mark" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V22C0 9 7 1 20 0v7c-7 1-11 6-11 13h10v16zm28 0V22C28 9 35 1 48 0v7c-7 1-11 6-11 13h10v16z"/></svg>
-            <blockquote><p>Dealing with Nick is different to the usual. He understands exactly what you need because he's been on the other side. High quality labour, delivered efficiently and effectively. Simple.</p></blockquote>
-            <figcaption><strong>Ross Davenport</strong> Operations Director, Denholm Industrial Services</figcaption>
-          </figure>
         </div>
       </div>
     </section>
@@ -385,15 +409,14 @@
     <section class="nick" id="nick">
       <div class="wrap nick__grid">
         <figure class="nick__photo">
-          <img class="nick__mark" src="/assets/img/icon-gold.webp" alt="" aria-hidden="true" width="900" height="649" decoding="async">
-          <div class="nick__frame">
+                    <div class="nick__frame">
             <img class="nick__img" src="/assets/img/nick-souness.webp?v=2" srcset="/assets/img/nick-souness-600.webp?v=2 640w, /assets/img/nick-souness.webp?v=2 1200w" sizes="(max-width: 980px) 88vw, 40vw" alt="Nick Souness, Managing Director of Nexus Resourcing Group" width="1200" height="1500" loading="lazy" decoding="async">
           </div>
           <figcaption><strong>Nick Souness</strong> Managing Director</figcaption>
         </figure>
 
         <div class="nick__copy">
-          <h2 class="display display--light">Meet Nick</h2>
+          <h2 class="display display--light" data-lines>Meet Nick</h2>
           <p class="nick__years"><span class="count" data-to="22">22</span> years in marine and defence engineering</p>
           <p>Nick started as an apprentice at Devonport Royal Dockyard in 2004 and spent 22 years at Babcock, rising to Project Manager and Head of Department. He knows the pressure points first hand: late call-ups, unvetted labour, and programmes slipping while roles sit empty.</p>
           <p>Nexus is his different take on resourcing. Rather than waiting for a vacancy to become a problem, Nick works ahead of your programme, building the right people around the project before the gap appears.</p>
@@ -412,7 +435,7 @@
     <section class="contact" id="contact">
       <div class="wrap contact__grid">
         <div class="contact__intro">
-          <h2 class="display">Need resource for your next project?</h2>
+          <h2 class="display" data-lines>Need resource for your next project?</h2>
           <p>Book a short call with Nick, or send an enquiry if you'd rather not talk yet. Looking for your next role? <a href="/candidates/">Register as a candidate</a>.</p>
           <ul class="cbtns" aria-label="Contact Nick">
             <li><a class="cbtn" href="tel:+447963398473"><span class="cbtn__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span><span class="cbtn__text"><small>Call</small>07963 398473</span></a></li>
@@ -520,6 +543,7 @@
     <div class="wrap foot__grid">
       <div class="foot__brand">
         <img class="foot__logo" src="/assets/img/logo-white.webp" alt="Nexus Resourcing Group" width="700" height="457" loading="lazy">
+        <img class="foot__logo-h" src="/assets/img/logo-h-goldwhite.webp" alt="Nexus Resourcing Group" width="600" height="167" loading="lazy">
         <p class="foot__tag"><span>Connecting talent.</span> <span>Powering projects.</span></p>
       </div>
       <nav class="foot__col" aria-label="Footer">
@@ -528,6 +552,7 @@
           <li><a href="/about/">About</a></li>
           <li><a href="/sectors/">Sectors</a></li>
           <li><a href="/candidates/">Candidates</a></li>
+          <li><a href="/blog/">Blog</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
       </nav>
@@ -540,18 +565,18 @@
           <li><a href="/sectors/#defence">Defence</a></li>
         </ul>
       </div>
-      <div class="foot__col">
+      <div class="foot__col foot__col--talk">
         <h2>Talk to Nick</h2>
         <ul>
-          <li><a href="tel:+447963398473">07963 398473</a></li>
-          <li><a href="mailto:nick@nexusrg.co.uk">nick@nexusrg.co.uk</a></li>
+          <li><a href="tel:+447963398473"><span class="foot__k">Call</span>07963 398473</a></li>
+          <li><a href="mailto:nick@nexusrg.co.uk"><span class="foot__k">Email</span>nick@nexusrg.co.uk</a></li>
           <li><a href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%20found%20Nexus%20Resourcing%20Group%20online%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">WhatsApp</a></li>
           <li><a href="/contact/">Book a call</a></li>
         </ul>
       </div>
     </div>
     <div class="wrap foot__base">
-      <p>&copy; <span data-year>2026</span> Nexus Resourcing Group Limited. Registered in England and Wales, company no. 17426336. Registered office: 51 Burnham Park Road, Plymouth, PL3 5QB.</p>
+      <p>&copy; <span data-year>2026</span> Nexus Resourcing Group Limited. <span class="foot__reg">Registered in England and Wales, company no. 17426336.</span></p>
       <p><a href="/privacy/">Privacy &amp; cookies</a></p>
     </div>
     <div class="wrap foot__credit">
@@ -566,6 +591,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="/assets/js/main.js?v=6a0f893d" defer></script>
+  <script src="/assets/js/main.js?v=2fada951" defer></script>
 </body>
 </html>

@@ -21,14 +21,17 @@ def ver(rel):
 
 CSS_V = ver("assets/css/styles.css")
 JS_V = ver("assets/js/main.js")
+V2_V = ver("assets/css/v2.css")
 PAGES_DIR = ROOT / "tools" / "pages"
 PARTIALS_DIR = ROOT / "tools" / "partials"
+POSTS_DIR = ROOT / "tools" / "posts"
 SITE = "https://nexusrg.co.uk"
 
 NAV = [
     ("about", "/about/", "About"),
     ("sectors", "/sectors/", "Sectors"),
     ("candidates", "/candidates/", 'Candidates<span class="nav__live" title="Recruiting now" aria-label="(recruiting now)"></span>'),
+    ("blog", "/blog/", "Blog"),
     ("contact", "/contact/", "Contact"),
 ]
 
@@ -132,6 +135,7 @@ def head(title, desc, path, key):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="{FONTS}" rel="stylesheet">{preload}
   <link rel="stylesheet" href="/assets/css/styles.css?v={CSS_V}">
+  <link rel="stylesheet" href="/assets/css/v2.css?v={V2_V}">
 {SCHEMA if key == "home" else ""}
   <script>
     // Hide animated elements before first paint, only when motion is welcome.
@@ -214,6 +218,7 @@ FOOTER = """
     <div class="wrap foot__grid">
       <div class="foot__brand">
         <img class="foot__logo" src="/assets/img/logo-white.webp" alt="Nexus Resourcing Group" width="700" height="457" loading="lazy">
+        <img class="foot__logo-h" src="/assets/img/logo-h-goldwhite.webp" alt="Nexus Resourcing Group" width="600" height="167" loading="lazy">
         <p class="foot__tag"><span>Connecting talent.</span> <span>Powering projects.</span></p>
       </div>
       <nav class="foot__col" aria-label="Footer">
@@ -222,6 +227,7 @@ FOOTER = """
           <li><a href="/about/">About</a></li>
           <li><a href="/sectors/">Sectors</a></li>
           <li><a href="/candidates/">Candidates</a></li>
+          <li><a href="/blog/">Blog</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
       </nav>
@@ -234,18 +240,18 @@ FOOTER = """
           <li><a href="/sectors/#defence">Defence</a></li>
         </ul>
       </div>
-      <div class="foot__col">
+      <div class="foot__col foot__col--talk">
         <h2>Talk to Nick</h2>
         <ul>
-          <li><a href="tel:+447963398473">07963 398473</a></li>
-          <li><a href="mailto:nick@nexusrg.co.uk">nick@nexusrg.co.uk</a></li>
+          <li><a href="tel:+447963398473"><span class="foot__k">Call</span>07963 398473</a></li>
+          <li><a href="mailto:nick@nexusrg.co.uk"><span class="foot__k">Email</span>nick@nexusrg.co.uk</a></li>
           <li><a href="https://wa.me/447963398473?text=Hi%20Nick%2C%20I%20found%20Nexus%20Resourcing%20Group%20online%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">WhatsApp</a></li>
           <li><a href="/contact/">Book a call</a></li>
         </ul>
       </div>
     </div>
     <div class="wrap foot__base">
-      <p>&copy; <span data-year>2026</span> Nexus Resourcing Group Limited. Registered in England and Wales, company no. 17426336. Registered office: 51 Burnham Park Road, Plymouth, PL3 5QB.</p>
+      <p>&copy; <span data-year>2026</span> Nexus Resourcing Group Limited. <span class="foot__reg">Registered in England and Wales, company no. 17426336.</span></p>
       <p><a href="/privacy/">Privacy &amp; cookies</a></p>
     </div>
     <div class="wrap foot__credit">
@@ -266,13 +272,223 @@ FOOTER = """
 """
 
 
+def vac_updated():
+    """Date the vacancies were last changed: last commit to the partial, else today."""
+    import subprocess, datetime
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", "tools/partials/vacancies.html"],
+                             capture_output=True, text=True, cwd=ROOT).stdout.strip()
+        d = datetime.date.fromisoformat(out) if out else datetime.date.today()
+    except Exception:
+        d = datetime.date.today()
+    return f"{d.day} {d.strftime('%B %Y')}"
+
+
+# ---------------------------------------------------------------------------
+# Blog: one Markdown file per post in tools/posts/<slug>.md
+#
+#   ---
+#   title: Mobilising 100 trades to Grand Bahama
+#   date: 2026-11-12
+#   summary: One or two sentences for the blog list and search results.
+#   image: /assets/img/case-cruise-liner.webp
+#   category: Marine
+#   ---
+#   Body in plain Markdown: paragraphs, ## headings, - lists, **bold**,
+#   [links](https://...), ![alt text](/assets/img/photo.webp) and > quotes.
+#
+# Files starting with "_" are drafts and are skipped.
+# ---------------------------------------------------------------------------
+import datetime, html as _html
+
+
+def _inline(t):
+    t = _html.escape(t, quote=False)
+    t = re.sub(r"!\[([^\]]*)\]\(([^)\s]+)\)", r'<img src="\2" alt="\1" loading="lazy" decoding="async">', t)
+    t = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)",
+               lambda m: f'<a href="{m.group(2)}"' + (' target="_blank" rel="noopener"' if m.group(2).startswith("http") else "") + f">{m.group(1)}</a>", t)
+    t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    t = re.sub(r"(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])", r"<em>\1</em>", t)
+    return t
+
+
+def markdown(md):
+    out, para, items, quote = [], [], [], []
+    def flush():
+        if para: out.append("<p>" + _inline(" ".join(para)) + "</p>"); para.clear()
+        if items: out.append("<ul>" + "".join(f"<li>{_inline(i)}</li>" for i in items) + "</ul>"); items.clear()
+        if quote: out.append("<blockquote><p>" + _inline(" ".join(quote)) + "</p></blockquote>"); quote.clear()
+    for line in md.splitlines():
+        l = line.strip()
+        if not l: flush(); continue
+        m = re.match(r"(#{2,4})\s+(.*)", l)
+        if m:
+            flush(); n = len(m.group(1)); out.append(f"<h{n}>{_inline(m.group(2))}</h{n}>"); continue
+        if re.match(r"[-*]\s+", l):
+            if para or quote: flush()
+            items.append(re.sub(r"^[-*]\s+", "", l)); continue
+        if l.startswith(">"):
+            if para or items: flush()
+            quote.append(l.lstrip("> ")); continue
+        m = re.fullmatch(r'!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)', l)
+        if m:
+            flush()
+            cap = f"<figcaption>{_inline(m.group(3))}</figcaption>" if m.group(3) else ""
+            out.append(f'<figure><img src="{m.group(2)}" alt="{_html.escape(m.group(1))}" loading="lazy" decoding="async">{cap}</figure>'); continue
+        if items or quote: flush()
+        para.append(l)
+    flush()
+    return "\n".join(out)
+
+
+def load_posts():
+    posts = []
+    for f in sorted(POSTS_DIR.glob("*.md")):
+        if f.name.startswith("_"):
+            continue
+        raw = f.read_text(encoding="utf-8")
+        meta, body = {}, raw
+        m = re.match(r"---\s*\n(.*?)\n---\s*\n(.*)", raw, re.S)
+        if m:
+            for line in m.group(1).splitlines():
+                if ":" in line:
+                    k, v = line.split(":", 1); meta[k.strip()] = v.strip()
+            body = m.group(2)
+        d = datetime.date.fromisoformat(meta.get("date", datetime.date.today().isoformat()))
+        words = len(re.findall(r"\w+", body))
+        posts.append({
+            "slug": f.stem, "title": meta.get("title", f.stem.replace("-", " ").capitalize()),
+            "summary": meta.get("summary", ""), "seo_title": meta.get("seo_title", ""), "credit": meta.get("image_credit", ""), "image": meta.get("image", ""),
+            "category": meta.get("category", "News"), "date": d,
+            "date_h": f"{d.day} {d.strftime('%B %Y')}", "mins": max(1, round(words / 220)),
+            "html": markdown(body),
+        })
+    return sorted(posts, key=lambda p: p["date"], reverse=True)
+
+
+def post_card(p):
+    img = (f'<div class="post-card__media"><img src="{p["image"]}" alt="" loading="lazy" decoding="async"></div>'
+           if p["image"] else '<div class="post-card__media post-card__media--none" aria-hidden="true"><img src="/assets/img/icon-gold.webp" alt=""></div>')
+    return f"""        <article class="post-card">
+          <a href="/blog/{p['slug']}/">
+            {img}
+            <p class="post-card__meta"><span>{_html.escape(p['category'])}</span> <time datetime="{p['date'].isoformat()}">{p['date_h']}</time></p>
+            <h3>{_html.escape(p['title'])}</h3>
+            <p class="post-card__sum">{_html.escape(p['summary'])}</p>
+            <span class="post-card__more">Read the post</span>
+          </a>
+        </article>"""
+
+
+def blog_index(posts):
+    cards = "\n".join(post_card(p) for p in posts) if posts else \
+        '        <p class="blog__empty">The first posts are on their way. In the meantime, <a href="/contact/">talk to Nick</a> about your project.</p>'
+    return f"""    <section class="phero phero--plain">
+      <div class="wrap">
+        <p class="phero__kicker">Blog</p>
+        <h1 class="phero__title">News and recent work</h1>
+        <p class="phero__lede">Projects we've supported, people we've placed and what's happening across marine, commercial, domestic and defence work.</p>
+      </div>
+    </section>
+
+    <section class="blog">
+      <div class="wrap blog__grid">
+{cards}
+      </div>
+    </section>
+"""
+
+
+def blog_post(p, others):
+    credit = f'<figcaption>{_html.escape(p["credit"])}</figcaption>' if p["credit"] else ""
+    hero = f'<figure class="post__hero"><img src="{p["image"]}" alt="" decoding="async">{credit}</figure>' if p["image"] else ""
+    more = "\n".join(post_card(o) for o in others[:3])
+    more_sec = f"""
+    <section class="blog blog--more">
+      <div class="wrap">
+        <h2 class="display">More from the blog</h2>
+        <div class="blog__grid">
+{more}
+        </div>
+      </div>
+    </section>
+""" if others else ""
+    nick = """        <div class="post__by"><img src="/assets/img/nick-souness-face.webp?v=2" alt="" width="96" height="96" loading="lazy"><p><strong>Nick Souness</strong> Managing Director</p></div>
+"""
+    return f"""    <article class="post">
+      <header class="wrap post__head">
+        <a class="post__back" href="/blog/">All posts</a>
+        <p class="post__meta"><span>{_html.escape(p['category'])}</span> <time datetime="{p['date'].isoformat()}">{p['date_h']}</time> <span>{p['mins']} min read</span></p>
+        <h1 class="post__title">{_html.escape(p['title'])}</h1>
+        <p class="post__sum">{_html.escape(p['summary'])}</p>
+{nick}      </header>
+      <div class="wrap">{hero}</div>
+      <div class="wrap post__body">
+{p['html']}
+        <aside class="post__cta">
+          <p>Need people for a project like this?</p>
+          <a class="btn btn--gold" href="/contact/">Book a chat with Nick</a>
+        </aside>
+      </div>
+    </article>
+{more_sec}"""
+
+
+def post_schema(p):
+    import json
+    data = {
+        "@context": "https://schema.org", "@type": "BlogPosting",
+        "headline": p["title"], "description": p["summary"],
+        "datePublished": p["date"].isoformat(), "dateModified": p["date"].isoformat(),
+        "mainEntityOfPage": f"{SITE}/blog/{p['slug']}/",
+        "author": {"@type": "Person", "name": "Nick Souness", "jobTitle": "Managing Director"},
+        "publisher": {"@type": "Organization", "name": "Nexus Resourcing Group",
+                      "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/img/og-image.jpg"}},
+    }
+    if p["image"]:
+        data["image"] = SITE + p["image"]
+    return '  <script type="application/ld+json">' + json.dumps(data) + "</script>\n"
+
+
+def page_html(key, path, title, desc, body, cta=True, body_class="", og_image=None, extra_head=""):
+    h = head(title, desc, path, key)
+    if extra_head:
+        h = h.replace("</head>", extra_head + "</head>", 1)
+    if og_image:
+        h = re.sub(r'(<meta property="og:image" content=")[^"]*', r"\g<1>" + SITE + og_image, h)
+        h = re.sub(r'(<meta name="twitter:image" content=")[^"]*', r"\g<1>" + SITE + og_image, h)
+    return "\n".join([
+        h, f'<body class="{body_class}" data-page="{key}">', header(key), '  <main id="main">', body, "  </main>",
+        CTA if cta else "", FOOTER.lstrip("\n").replace("{JS_V}", JS_V),
+    ])
+
+
+def build_blog():
+    posts = load_posts()
+    out = ROOT / "blog" / "index.html"; out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(page_html("blog", "/blog/", "Blog | Nexus Resourcing Group",
+                             "News and recent work from Nexus Resourcing Group across marine, commercial, domestic and defence projects.",
+                             blog_index(posts), True, "page-blog"), encoding="utf-8")
+    print("built blog/index.html", len(posts), "posts")
+    for p in posts:
+        others = [o for o in posts if o is not p]
+        t = ROOT / "blog" / p["slug"] / "index.html"; t.parent.mkdir(parents=True, exist_ok=True)
+        t.write_text(page_html("blog", f"/blog/{p['slug']}/", f"{p['seo_title'] or p['title']} | Nexus",
+                               p["summary"] or p["title"], blog_post(p, others), True, "page-blog page-post",
+                               og_image=(p["image"].rsplit(".",1)[0] + "-og.jpg" if p["image"] and (ROOT / (p["image"].lstrip("/").rsplit(".",1)[0] + "-og.jpg")).exists() else p["image"] or None), extra_head=post_schema(p)), encoding="utf-8")
+        print("built", t.relative_to(ROOT))
+    return posts
+
+
 def build():
+    updated = vac_updated()
     for key, out, path, title, desc, cta, body_class in PAGES:
         body = (PAGES_DIR / f"{key}.html").read_text(encoding="utf-8").strip("\n")
         # <!--include:name--> pulls in tools/partials/name.html
         body = re.sub(r"<!--include:([\w-]+)-->",
                       lambda m: (PARTIALS_DIR / f"{m.group(1)}.html").read_text(encoding="utf-8").rstrip("\n"),
                       body)
+        body = body.replace("<!--vac-updated-->", updated)
         cls = f' class="{body_class}"' if body_class else ""
         html = "\n".join([
             head(title, desc, path, key),
@@ -290,8 +506,11 @@ def build():
         target.write_text(html, encoding="utf-8")
         print("built", out)
 
+    posts = build_blog()
+
     # sitemap for search engines (every page except the 404)
-    urls = "\n".join(f"  <url><loc>{SITE}{path}</loc></url>" for key, out, path, *_ in PAGES if key != "404")
+    paths = [path for key, out, path, *_ in PAGES if key != "404"] + ["/blog/"] + [f"/blog/{p['slug']}/" for p in posts]
+    urls = "\n".join(f"  <url><loc>{SITE}{p}</loc></url>" for p in paths)
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
