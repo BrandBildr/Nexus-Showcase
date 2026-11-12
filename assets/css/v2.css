@@ -459,3 +459,7 @@ main *, .foot *, .menu * { text-transform: none !important; }
   .clients .logos img[alt="SMS Group"] { max-height: 34px; }
   .clients .logos img[alt^="Grand Bahama"] { max-height: 60px; }
 }
+@media (max-width: 700px) {
+  .srows { width: 100%; margin-inline: 0; padding-inline: clamp(16px, 4vw, 48px); scroll-padding-inline: clamp(16px, 4vw, 48px); }
+  .srows + .rail-track { width: var(--wrap); margin-inline: auto; }
+}
