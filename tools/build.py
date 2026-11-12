@@ -330,8 +330,11 @@ def markdown(md):
         if l.startswith(">"):
             if para or items: flush()
             quote.append(l.lstrip("> ")); continue
-        if re.fullmatch(r"!\[[^\]]*\]\([^)]+\)", l):
-            flush(); out.append("<figure>" + _inline(l) + "</figure>"); continue
+        m = re.fullmatch(r'!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)', l)
+        if m:
+            flush()
+            cap = f"<figcaption>{_inline(m.group(3))}</figcaption>" if m.group(3) else ""
+            out.append(f'<figure><img src="{m.group(2)}" alt="{_html.escape(m.group(1))}" loading="lazy" decoding="async">{cap}</figure>'); continue
         if items or quote: flush()
         para.append(l)
     flush()
@@ -355,7 +358,7 @@ def load_posts():
         words = len(re.findall(r"\w+", body))
         posts.append({
             "slug": f.stem, "title": meta.get("title", f.stem.replace("-", " ").capitalize()),
-            "summary": meta.get("summary", ""), "seo_title": meta.get("seo_title", ""), "image": meta.get("image", ""),
+            "summary": meta.get("summary", ""), "seo_title": meta.get("seo_title", ""), "credit": meta.get("image_credit", ""), "image": meta.get("image", ""),
             "category": meta.get("category", "News"), "date": d,
             "date_h": f"{d.day} {d.strftime('%B %Y')}", "mins": max(1, round(words / 220)),
             "html": markdown(body),
@@ -397,7 +400,8 @@ def blog_index(posts):
 
 
 def blog_post(p, others):
-    hero = f'<figure class="post__hero"><img src="{p["image"]}" alt="" decoding="async"></figure>' if p["image"] else ""
+    credit = f'<figcaption>{_html.escape(p["credit"])}</figcaption>' if p["credit"] else ""
+    hero = f'<figure class="post__hero"><img src="{p["image"]}" alt="" decoding="async">{credit}</figure>' if p["image"] else ""
     more = "\n".join(post_card(o) for o in others[:3])
     more_sec = f"""
     <section class="blog blog--more">
@@ -471,7 +475,7 @@ def build_blog():
         t = ROOT / "blog" / p["slug"] / "index.html"; t.parent.mkdir(parents=True, exist_ok=True)
         t.write_text(page_html("blog", f"/blog/{p['slug']}/", f"{p['seo_title'] or p['title']} | Nexus",
                                p["summary"] or p["title"], blog_post(p, others), True, "page-blog page-post",
-                               og_image=p["image"] or None, extra_head=post_schema(p)), encoding="utf-8")
+                               og_image=(p["image"].rsplit(".",1)[0] + "-og.jpg" if p["image"] and (ROOT / (p["image"].lstrip("/").rsplit(".",1)[0] + "-og.jpg")).exists() else p["image"] or None), extra_head=post_schema(p)), encoding="utf-8")
         print("built", t.relative_to(ROOT))
     return posts
 

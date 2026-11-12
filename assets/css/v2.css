@@ -725,3 +725,8 @@ main *, .foot *, .menu * { text-transform: none !important; }
 .post__by img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
 .post__by p { font-size: .9rem; color: var(--muted); }
 .post__by strong { display: block; color: var(--ink); font-weight: 600; }
+.post__hero { position: relative; }
+.post__hero figcaption, .post__body figcaption { margin-top: 10px; font-size: .78rem; color: var(--muted); }
+.post__hero { aspect-ratio: auto; overflow: visible; }
+.post__hero img { aspect-ratio: 21 / 9; border-radius: var(--r); object-position: 40% 50%; }
+@media (max-width: 700px) { .post__hero img { aspect-ratio: 4 / 3; } }

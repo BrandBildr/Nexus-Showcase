@@ -3,7 +3,8 @@ title: November update: skilled trades into the USA and more labour at Devonport
 date: 2026-11-12
 summary: Nick's November update: Nexus is now supplying welders and fitters to Mississippi, Louisiana and Florida, and Denholm wants more labour at Devonport.
 seo_title: November update: skilled trades to the USA and Devonport
-image: /assets/img/hero-ship.webp
+image: /assets/img/blog-us-grinding.webp
+image_credit: A shipyard worker in Pascagoula, Mississippi. U.S. Navy photo by Austin Rooney.
 category: News
 ---
 Hi everyone, Nick here.
@@ -25,6 +26,8 @@ The demand isn't slowing down. We're recruiting for more than 60 welders and fit
 - **Mississippi:** pipe fitters, a pipe supervisor, structural plate fitters and structural welders
 - **Louisiana:** structural welders, aluminium welders, a pipe fitter and a pipe welder
 - **Florida:** pipe fitters, pipe welders, plate and structural fitters and structural welders
+
+![A welder at work in a Gulf Coast shipyard](/assets/img/blog-us-welding.webp "Welding on the Gulf Coast. U.S. Navy photo by Austin Rooney.")
 
 The terms are $19 an hour on 70-hour weeks, with a $20 daily per diem, paid every two weeks, on 3 to 5 month contracts.
 
