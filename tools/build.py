@@ -268,13 +268,27 @@ FOOTER = """
 """
 
 
+def vac_updated():
+    """Date the vacancies were last changed: last commit to the partial, else today."""
+    import subprocess, datetime
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", "tools/partials/vacancies.html"],
+                             capture_output=True, text=True, cwd=ROOT).stdout.strip()
+        d = datetime.date.fromisoformat(out) if out else datetime.date.today()
+    except Exception:
+        d = datetime.date.today()
+    return f"{d.day} {d.strftime('%B %Y')}"
+
+
 def build():
+    updated = vac_updated()
     for key, out, path, title, desc, cta, body_class in PAGES:
         body = (PAGES_DIR / f"{key}.html").read_text(encoding="utf-8").strip("\n")
         # <!--include:name--> pulls in tools/partials/name.html
         body = re.sub(r"<!--include:([\w-]+)-->",
                       lambda m: (PARTIALS_DIR / f"{m.group(1)}.html").read_text(encoding="utf-8").rstrip("\n"),
                       body)
+        body = body.replace("<!--vac-updated-->", updated)
         cls = f' class="{body_class}"' if body_class else ""
         html = "\n".join([
             head(title, desc, path, key),
