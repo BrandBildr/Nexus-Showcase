@@ -174,18 +174,33 @@
   };
 
   if (animate) safely(() => {
-    $$('.hero__h1, .phero__title, h2.display, [data-lines]').filter((h, i, all) => all.indexOf(h) === i).forEach(h => {
+    $$('.phero__title, h2.display, [data-lines]').filter((h, i, all) => all.indexOf(h) === i).forEach(h => {
       const above = h.closest('.hero, .phero');
       lineReveal(h, above ? { trigger: false, delay: 0.15, duration: 1.2 } : {});
     });
   });
 
-  /* ---------- home hero: the picture settles, then the details ---------- */
+  /* ---------- home hero: the logo letters converge ---------- */
   if ($('.hero') && animate) safely(() => {
-    gsap.timeline({ defaults: { ease: 'power3.out' } })
-      .fromTo('.hero__img', { scale: 1.08 }, { scale: 1, duration: 2.4, ease: 'power2.out' }, 0)
-      .fromTo(['.hero__sub', '.hero__foot .btn'], { opacity: 0 }, { opacity: 1, duration: 0.9, stagger: 0.08 }, 0.7)
-      .fromTo('.hero__links a', { opacity: 0 }, { opacity: 1, duration: 0.9, stagger: 0.08 }, 0.85);
+    // Full sequence on the first visit in a session, a quicker one after that
+    let seen = false;
+    try { seen = sessionStorage.getItem('nx-intro') === '1'; sessionStorage.setItem('nx-intro', '1'); } catch (_) {}
+    const k = seen ? 0.45 : 1;
+    const small = innerWidth < 700;
+    const spread = Math.min(innerWidth * 0.16, 220);
+    gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.15 * k })
+      .fromTo('.hero__img', { scale: 1.14 }, { scale: 1.02, duration: 3 * k, ease: 'power2.out' }, 0)
+      .fromTo('.wm',
+        { opacity: 0, x: i => (i - 2) * spread * 2.2, filter: small ? 'none' : 'blur(12px)' },
+        { opacity: 1, x: 0, filter: small ? 'none' : 'blur(0px)', duration: 1.8 * k, stagger: { each: 0.06 * k, from: 'edges' } }, 0.25 * k)
+      .fromTo('.wm--x', { rotate: -90, scale: 1.4 }, { rotate: 0, scale: 1, duration: 1.6 * k }, 0.35 * k)
+      .fromTo('.hero__icon', { opacity: 0, scale: 0.6, rotate: -40, y: 16 }, { opacity: 1, scale: 1, rotate: 0, y: 0, duration: 1.6 * k }, 0.9 * k)
+      .fromTo('.hero__shine', { backgroundPosition: '150% 0' }, { backgroundPosition: '-60% 0', duration: 1.6, ease: 'power2.inOut' }, 1.7 * k)
+      .to('.hero__group .rule', { scaleX: 1, duration: 1.2 * k }, 1.3 * k)
+      .fromTo('.hero__group-text', { opacity: 0, letterSpacing: '0.9em' }, { opacity: 1, letterSpacing: '0.42em', duration: 1.4 * k }, 1.3 * k)
+      .fromTo('.hero__tag', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1 * k }, 1.75 * k)
+      .fromTo('.hero__ctas > *', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1 * k, stagger: 0.1 * k }, 1.95 * k)
+      .fromTo('.hero__links a', { opacity: 0 }, { opacity: 1, duration: 1 * k, stagger: 0.08 * k }, 2.15 * k);
   });
 
   /* ---------- swipe rails: a progress line shows there's more to see ---------- */
