@@ -716,3 +716,12 @@ main *, .foot *, .menu * { text-transform: none !important; }
   .foot__base p:first-child { max-width: none; }
   .foot__credit { padding-top: 16px; margin-top: 18px; border-top: 1px solid var(--line-l); }
 }
+
+/* vacancy headcount list */
+.vac__list { list-style: none; padding: 0; margin: 14px 0 4px; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.vac__list li { display: flex; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
+.vac__n { min-width: 2ch; font-weight: 700; color: var(--bronze); font-variant-numeric: tabular-nums; }
+.post__by { display: flex; align-items: center; gap: 12px; margin-top: 24px; }
+.post__by img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.post__by p { font-size: .9rem; color: var(--muted); }
+.post__by strong { display: block; color: var(--ink); font-weight: 600; }

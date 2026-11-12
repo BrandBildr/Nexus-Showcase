@@ -355,7 +355,7 @@ def load_posts():
         words = len(re.findall(r"\w+", body))
         posts.append({
             "slug": f.stem, "title": meta.get("title", f.stem.replace("-", " ").capitalize()),
-            "summary": meta.get("summary", ""), "image": meta.get("image", ""),
+            "summary": meta.get("summary", ""), "seo_title": meta.get("seo_title", ""), "image": meta.get("image", ""),
             "category": meta.get("category", "News"), "date": d,
             "date_h": f"{d.day} {d.strftime('%B %Y')}", "mins": max(1, round(words / 220)),
             "html": markdown(body),
@@ -409,13 +409,15 @@ def blog_post(p, others):
       </div>
     </section>
 """ if others else ""
+    nick = """        <div class="post__by"><img src="/assets/img/nick-souness-face.webp?v=2" alt="" width="96" height="96" loading="lazy"><p><strong>Nick Souness</strong> Managing Director</p></div>
+"""
     return f"""    <article class="post">
       <header class="wrap post__head">
         <a class="post__back" href="/blog/">All posts</a>
         <p class="post__meta"><span>{_html.escape(p['category'])}</span> <time datetime="{p['date'].isoformat()}">{p['date_h']}</time> <span>{p['mins']} min read</span></p>
         <h1 class="post__title">{_html.escape(p['title'])}</h1>
         <p class="post__sum">{_html.escape(p['summary'])}</p>
-      </header>
+{nick}      </header>
       <div class="wrap">{hero}</div>
       <div class="wrap post__body">
 {p['html']}
@@ -428,8 +430,26 @@ def blog_post(p, others):
 {more_sec}"""
 
 
-def page_html(key, path, title, desc, body, cta=True, body_class="", og_image=None):
+def post_schema(p):
+    import json
+    data = {
+        "@context": "https://schema.org", "@type": "BlogPosting",
+        "headline": p["title"], "description": p["summary"],
+        "datePublished": p["date"].isoformat(), "dateModified": p["date"].isoformat(),
+        "mainEntityOfPage": f"{SITE}/blog/{p['slug']}/",
+        "author": {"@type": "Person", "name": "Nick Souness", "jobTitle": "Managing Director"},
+        "publisher": {"@type": "Organization", "name": "Nexus Resourcing Group",
+                      "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/img/og-image.jpg"}},
+    }
+    if p["image"]:
+        data["image"] = SITE + p["image"]
+    return '  <script type="application/ld+json">' + json.dumps(data) + "</script>\n"
+
+
+def page_html(key, path, title, desc, body, cta=True, body_class="", og_image=None, extra_head=""):
     h = head(title, desc, path, key)
+    if extra_head:
+        h = h.replace("</head>", extra_head + "</head>", 1)
     if og_image:
         h = re.sub(r'(<meta property="og:image" content=")[^"]*', r"\g<1>" + SITE + og_image, h)
         h = re.sub(r'(<meta name="twitter:image" content=")[^"]*', r"\g<1>" + SITE + og_image, h)
@@ -449,9 +469,9 @@ def build_blog():
     for p in posts:
         others = [o for o in posts if o is not p]
         t = ROOT / "blog" / p["slug"] / "index.html"; t.parent.mkdir(parents=True, exist_ok=True)
-        t.write_text(page_html("blog", f"/blog/{p['slug']}/", f"{p['title']} | Nexus Resourcing Group",
+        t.write_text(page_html("blog", f"/blog/{p['slug']}/", f"{p['seo_title'] or p['title']} | Nexus",
                                p["summary"] or p["title"], blog_post(p, others), True, "page-blog page-post",
-                               og_image=p["image"] or None), encoding="utf-8")
+                               og_image=p["image"] or None, extra_head=post_schema(p)), encoding="utf-8")
         print("built", t.relative_to(ROOT))
     return posts
 
