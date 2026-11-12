@@ -150,11 +150,68 @@
     return $$('.w > span', h);
   };
 
-  /* ---------- home hero: a quiet fade in ---------- */
+  /* ---------- headings rise line by line behind a mask ---------- */
+  // Split once, animate, then put the original text back so resizing never breaks the lines
+  const lineReveal = (h, opts = {}) => {
+    const original = h.innerHTML;
+    const words = h.textContent.trim().split(/\s+/);
+    h.innerHTML = words.map(w => `<span class="lw">${w}</span>`).join(' ');
+    const lines = [];
+    $$('.lw', h).forEach(w => {
+      const top = Math.round(w.offsetTop);
+      const last = lines[lines.length - 1];
+      if (!last || Math.abs(last.top - top) > 4) lines.push({ top, words: [w.textContent] });
+      else last.words.push(w.textContent);
+    });
+    h.setAttribute('aria-label', h.textContent.trim());
+    h.innerHTML = lines.map(l => `<span class="ln" aria-hidden="true"><span>${l.words.join(' ')}</span></span>`).join('');
+    const inner = $$('.ln > span', h);
+    return gsap.fromTo(inner, { yPercent: 105 }, {
+      yPercent: 0, duration: opts.duration || 1, ease: 'power4.out', stagger: 0.09, delay: opts.delay || 0,
+      scrollTrigger: opts.trigger === false ? undefined : { trigger: h, start: 'top 88%', once: true },
+      onComplete: () => { h.innerHTML = original; h.removeAttribute('aria-label'); }
+    });
+  };
+
+  if (animate) safely(() => {
+    $$('.hero__h1, .phero__title, h2.display, [data-lines]').filter((h, i, all) => all.indexOf(h) === i).forEach(h => {
+      const above = h.closest('.hero, .phero');
+      lineReveal(h, above ? { trigger: false, delay: 0.15, duration: 1.2 } : {});
+    });
+  });
+
+  /* ---------- home hero: the picture settles, then the details ---------- */
   if ($('.hero') && animate) safely(() => {
-    gsap.timeline({ defaults: { ease: 'power2.out' }, delay: 0.05 })
-      .fromTo('.hero__copy > *', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.07 }, 0)
-      .fromTo('.qcard', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.07 }, 0.25);
+    gsap.timeline({ defaults: { ease: 'power3.out' } })
+      .fromTo('.hero__img', { scale: 1.08 }, { scale: 1, duration: 2.4, ease: 'power2.out' }, 0)
+      .fromTo(['.hero__sub', '.hero__foot .btn'], { opacity: 0 }, { opacity: 1, duration: 0.9, stagger: 0.08 }, 0.7)
+      .fromTo('.hero__links a', { opacity: 0 }, { opacity: 1, duration: 0.9, stagger: 0.08 }, 0.85);
+  });
+
+  /* ---------- reading progress: a thin brass line under the nav ---------- */
+  safely(() => {
+    const bar = document.createElement('div');
+    bar.className = 'progress'; bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    let ticking = false;
+    const set = () => {
+      ticking = false;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(set); } }, { passive: true });
+    set();
+  });
+
+  /* ---------- promise panels: each one settles back as the next slides over ---------- */
+  if ($('.vstack') && animate) safely(() => {
+    const cards = $$('.vcard');
+    cards.slice(0, -1).forEach((c, i) => {
+      gsap.to($('.vcard__in', c), {
+        scale: 0.94, opacity: 0.35, ease: 'none',
+        scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top top', scrub: true }
+      });
+    });
   });
 
   /* ---------- inner page hero: one orchestrated entrance ---------- */
