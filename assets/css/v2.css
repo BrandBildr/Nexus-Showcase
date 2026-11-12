@@ -344,3 +344,66 @@ main *, .foot *, .menu * { text-transform: none !important; }
 .vac-updated { margin-top: 14px; font-size: .85rem; color: var(--muted); }
 .cases__grid { align-items: start !important; }
 .case { align-content: start !important; grid-template-rows: auto 1fr; }
+
+/* ---------- round 2: case studies line up row by row ---------- */
+.proof .cases__grid { grid-template-columns: repeat(3, 1fr); gap: 0 clamp(24px, 3vw, 40px); }
+.proof .case { grid-row: span 5; display: grid; grid-template-rows: subgrid !important; gap: 0; }
+.proof .case__body { display: contents; }
+.proof .case__media { margin-bottom: 22px; }
+.proof .case__sector { margin-bottom: 8px; align-self: end; }
+.proof .case h3 { margin-bottom: 10px; align-self: start; }
+.proof .case__body > p:not(.case__sector) { font-size: .95rem; line-height: 1.6; align-self: start; }
+.proof .case__facts {
+  align-self: start; margin-top: 20px; padding-top: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+}
+.proof .case__facts dt { font-size: .74rem; font-weight: 500; color: var(--muted); }
+.proof .case__facts dd { font-size: .9rem; font-weight: 600; line-height: 1.35; margin-top: 4px; }
+@media (max-width: 980px) {
+  .proof .cases__grid { grid-template-columns: 1fr; gap: 40px; }
+  .proof .case { grid-row: auto; grid-template-rows: auto !important; }
+}
+
+/* ---------- client logos in one enclosed strip ---------- */
+.clients {
+  display: grid; grid-template-columns: minmax(150px, 1fr) 4fr; align-items: stretch;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--r);
+}
+.clients__label {
+  display: flex; align-items: center; padding: 0 28px; font-size: .88rem; font-weight: 600; color: var(--ink);
+  border-right: 1px solid var(--line);
+}
+.clients .logos--brands { margin: 0 !important; border: 0 !important; padding: 0 !important; grid-template-columns: repeat(3, 1fr); }
+.clients .logos li { height: 112px; padding: 0 28px; }
+.clients .logos li + li { border-left: 1px solid var(--line); }
+.clients .logos img { width: auto; max-width: 100%; max-height: 50px; object-fit: contain; }
+.clients .logos img[alt="SMS Group"] { max-height: 40px; }
+.clients .logos img[alt^="Grand Bahama"] { max-height: 58px; }
+@media (max-width: 700px) {
+  .clients { grid-template-columns: 1fr; }
+  .clients__label { padding: 14px 18px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .clients .logos li { height: 84px; padding: 0 12px; }
+  .clients .logos img { max-height: 36px; }
+}
+
+/* ---------- about: less air, same content ---------- */
+.about--v3 { padding: clamp(80px, 9vw, 128px) 0 clamp(64px, 7vw, 96px); }
+.figures { margin-top: clamp(48px, 5vw, 72px); }
+.figures > div { padding-top: 22px; }
+.about--v3 .pillars {
+  margin-top: clamp(40px, 4.5vw, 64px); gap: 0; grid-template-columns: repeat(3, 1fr);
+  background: var(--stone); border-radius: var(--r);
+}
+.about--v3 .pillar {
+  display: grid; grid-template-columns: 32px 1fr; column-gap: 16px; align-content: start;
+  padding: clamp(24px, 2.6vw, 34px) !important;
+}
+.about--v3 .pillar + .pillar { border-left: 1px solid var(--line); }
+.about--v3 .pillar__icon { grid-row: 1 / 3; width: 30px; height: 30px; margin: 0; }
+.about--v3 .pillar h3 { max-width: none; margin-bottom: 6px; }
+.about--v3 .pillar p { font-size: .94rem; line-height: 1.6; }
+@media (max-width: 980px) {
+  .about--v3 .pillars { grid-template-columns: 1fr; }
+  .about--v3 .pillar + .pillar { border-left: 0; border-top: 1px solid var(--line); }
+}
+.clients .logos img { opacity: .9; }
+.proof .case__facts dd { font-size: .86rem; }
