@@ -247,7 +247,7 @@ FOOTER = """
       </div>
     </div>
     <div class="wrap foot__base">
-      <p>&copy; <span data-year>2026</span> Nexus Resourcing Group Limited. Registered in England and Wales, company no. 17426336. Registered office: 51 Burnham Park Road, Plymouth, PL3 5QB.</p>
+      <p>&copy; <span data-year>2026</span> Nexus Resourcing Group Limited. Registered in England and Wales, company no. 17426336.</p>
       <p><a href="/privacy/">Privacy &amp; cookies</a></p>
     </div>
     <div class="wrap foot__credit">

@@ -188,6 +188,25 @@
       .fromTo('.hero__links a', { opacity: 0 }, { opacity: 1, duration: 0.9, stagger: 0.08 }, 0.85);
   });
 
+  /* ---------- swipe rails: a progress line shows there's more to see ---------- */
+  safely(() => {
+    $$('.srows, .cases__grid--3').forEach(rail => {
+      const track = document.createElement('div');
+      track.className = 'rail-track'; track.setAttribute('aria-hidden', 'true');
+      track.innerHTML = '<span></span>';
+      rail.after(track);
+      const fill = track.firstChild;
+      const set = () => {
+        const max = rail.scrollWidth - rail.clientWidth;
+        const seen = max > 0 ? (rail.clientWidth + rail.scrollLeft) / rail.scrollWidth : 1;
+        fill.style.transform = `scaleX(${Math.min(1, seen)})`;
+      };
+      rail.addEventListener('scroll', set, { passive: true });
+      addEventListener('resize', set);
+      set();
+    });
+  });
+
   /* ---------- reading progress: a thin brass line under the nav ---------- */
   safely(() => {
     const bar = document.createElement('div');
