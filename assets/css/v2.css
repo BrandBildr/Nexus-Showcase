@@ -732,3 +732,8 @@ main *, .foot *, .menu * { text-transform: none !important; }
 @media (max-width: 700px) { .post__hero img { aspect-ratio: 4 / 3; } }
 /* discovery call card: show Nick's whole face */
 .call__face { object-position: 50% 50% !important; }
+/* blog: header photo sits in the reading column, same width and shape as images in the post */
+.post .post__hero { max-width: 720px; margin-inline: auto; }
+.post .post__hero img { aspect-ratio: 16 / 9; }
+@media (max-width: 700px) { .post .post__hero img { aspect-ratio: 16 / 9; } }
+.post .post__head { max-width: 720px; margin-inline: auto; }
