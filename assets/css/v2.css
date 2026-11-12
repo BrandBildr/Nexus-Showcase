@@ -730,3 +730,5 @@ main *, .foot *, .menu * { text-transform: none !important; }
 .post__hero { aspect-ratio: auto; overflow: visible; }
 .post__hero img { aspect-ratio: 21 / 9; border-radius: var(--r); object-position: 40% 50%; }
 @media (max-width: 700px) { .post__hero img { aspect-ratio: 4 / 3; } }
+/* discovery call card: show Nick's whole face */
+.call__face { object-position: 50% 50% !important; }

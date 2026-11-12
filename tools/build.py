@@ -413,7 +413,7 @@ def blog_post(p, others):
       </div>
     </section>
 """ if others else ""
-    nick = """        <div class="post__by"><img src="/assets/img/nick-souness-face.webp?v=2" alt="" width="96" height="96" loading="lazy"><p><strong>Nick Souness</strong> Managing Director</p></div>
+    nick = """        <div class="post__by"><img src="/assets/img/nick-souness-face.webp?v=3" alt="" width="96" height="96" loading="lazy"><p><strong>Nick Souness</strong> Managing Director</p></div>
 """
     return f"""    <article class="post">
       <header class="wrap post__head">
