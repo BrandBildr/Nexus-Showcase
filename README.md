@@ -34,3 +34,19 @@ Anything with `class="ph"` is placeholder content shown with a dashed gold outli
 - Set Nick's real booking link in `CAL_URL` at the top of `assets/js/main.js`.
 - Netlify Forms: two forms, `enquiry` and `candidate-registration` (with CV upload). Turn on form detection and add email notifications in Netlify.
 - Have Nexus review the privacy policy.
+
+## Blog
+
+Each post is a Markdown file in `tools/posts/<slug>.md` (file name becomes the URL, e.g. `/blog/grand-bahama-mobilisation/`). Front matter at the top:
+
+```
+---
+title: Post title
+date: 2026-11-12
+summary: One or two sentences for the blog list and search results.
+image: /assets/img/photo.webp
+category: Marine
+---
+```
+
+Body supports paragraphs, `##` headings, `-` lists, `**bold**`, `[links](url)`, `![alt](image)` and `>` quotes. Prefix the file name with `_` to keep it as a draft. Run `python3 tools/build.py` and the list page, post pages and sitemap update.

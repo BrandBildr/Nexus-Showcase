@@ -586,3 +586,88 @@ main *, .foot *, .menu * { text-transform: none !important; }
 /* hero without the quick-links row: keep the logo centred, a little air below */
 .hero--logo .hero__content { padding-bottom: clamp(48px, 7vw, 96px); }
 .proof .clients { margin-bottom: clamp(40px, 5vw, 64px); }
+
+/* ================= case facts on phones: label left, value right ================= */
+@media (max-width: 700px) {
+  .proof .case__facts, .cases__grid--3 .case__facts { display: grid; grid-template-columns: 1fr !important; gap: 0 !important; padding-top: 4px; }
+  .case__facts > div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .case__facts > div:last-child { border-bottom: 0; }
+  .case__facts dt { margin: 0; font-size: .8rem !important; }
+  .case__facts dd { margin: 0 !important; text-align: right; font-size: .9rem !important; }
+}
+
+/* ================= footer on phones: compact ================= */
+@media (max-width: 700px) {
+  .foot { padding: 44px 0 calc(24px + 76px); } /* room for the quick contact bar */
+  .foot__grid { grid-template-columns: 1fr 1fr; gap: 28px 20px; padding-bottom: 28px; }
+  .foot__brand { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .foot__logo { width: 96px; }
+  .foot__tag { text-align: right; font-size: .68rem; line-height: 1.6; letter-spacing: .02em; font-weight: 600; }
+  .foot__col h2 { margin-bottom: 10px; font-size: .78rem; }
+  .foot__col ul { gap: 7px; font-size: .9rem; }
+  .foot__col:last-child { grid-column: 1 / -1; }
+  .foot__col:last-child ul { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  .foot__base { padding-top: 18px; font-size: .74rem; gap: 6px; flex-direction: column; }
+  .foot__credit { justify-content: flex-start; padding-top: 10px; }
+}
+
+/* ================= blog ================= */
+.blog { padding-block: clamp(56px, 7vw, 104px); }
+.blog__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(32px, 4vw, 48px) clamp(24px, 3vw, 40px); }
+.blog__empty { grid-column: 1 / -1; color: var(--muted); font-size: 1.05rem; }
+.post-card a { display: grid; gap: 10px; text-decoration: none; color: var(--ink); }
+.post-card__media { aspect-ratio: 16 / 10; overflow: hidden; border-radius: var(--r); background: var(--stone); margin-bottom: 8px; }
+.post-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.post-card__media--none { display: grid; place-items: center; background: var(--ink); }
+.post-card__media--none img { width: 30%; height: auto; object-fit: contain; }
+.post-card a:hover .post-card__media img { transform: scale(1.04); }
+.post-card__meta { display: flex; gap: 10px; font-size: .8rem; color: var(--muted); }
+.post-card__meta span { color: var(--bronze); font-weight: 600; }
+.post-card h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.3; letter-spacing: -.015em; }
+.post-card__sum { font-size: .95rem; line-height: 1.6; color: var(--muted); }
+.post-card__more { font-size: .88rem; font-weight: 600; text-decoration: underline; text-decoration-color: var(--brass); text-underline-offset: 4px; }
+.post-card a:hover h3 { color: var(--bronze); }
+.blog--more { border-top: 1px solid var(--line); }
+.blog--more .display { margin-bottom: clamp(28px, 4vw, 44px); }
+
+.post { padding: calc(var(--nav-h) + clamp(40px, 6vw, 80px)) 0 clamp(40px, 5vw, 64px); }
+.page-post .nav { background: var(--ink); }
+.post__head { max-width: 860px; }
+.post__back { display: inline-block; font-size: .88rem; font-weight: 600; color: var(--muted); text-decoration: none; margin-bottom: 26px; }
+.post__back::before { content: "\2190\00a0"; }
+.post__back:hover { color: var(--ink); }
+.post__meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .85rem; color: var(--muted); }
+.post__meta span:first-child { color: var(--bronze); font-weight: 600; }
+.post__title { margin-top: 14px; font-weight: 400; font-size: clamp(2rem, 4.4vw, 3.6rem); line-height: 1.06; letter-spacing: -.035em; text-wrap: balance; }
+.post__sum { margin-top: 18px; font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.6; color: var(--ink-70); max-width: 56ch; }
+.post__hero { margin: clamp(32px, 5vw, 56px) 0 0; aspect-ratio: 21 / 9; overflow: hidden; border-radius: var(--r); }
+.post__hero img { width: 100%; height: 100%; object-fit: cover; }
+.post__body { max-width: 720px; margin-top: clamp(36px, 5vw, 64px); font-size: 1.06rem; line-height: 1.75; color: #2B2522; }
+.post__body > * + * { margin-top: 1.1em; }
+.post__body h2 { margin-top: 1.8em; font-size: 1.6rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.25; color: var(--ink); }
+.post__body h3 { margin-top: 1.5em; font-size: 1.2rem; font-weight: 600; color: var(--ink); }
+.post__body ul { padding-left: 1.2em; }
+.post__body li + li { margin-top: .4em; }
+.post__body li::marker { color: var(--brass); }
+.post__body a { color: var(--ink); text-decoration-color: var(--brass); text-underline-offset: 3px; }
+.post__body blockquote { margin-inline: 0; padding-left: 22px; border-left: 2px solid var(--brass); font-size: 1.25rem; line-height: 1.5; color: var(--ink); }
+.post__body figure { margin-inline: 0; }
+.post__body figure img, .post__body p img { width: 100%; height: auto; border-radius: var(--r); }
+.post__cta { margin-top: 2.6em !important; padding: 26px 28px; background: var(--stone); border-radius: var(--r); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.post__cta p { font-weight: 600; color: var(--ink); }
+
+@media (max-width: 980px) { .blog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) {
+  .blog__grid { grid-template-columns: 1fr; gap: 36px; }
+  .post__hero { aspect-ratio: 4 / 3; }
+  .post__body { font-size: 1rem; }
+  .post__cta { padding: 20px; }
+  .post__cta .btn { width: 100%; }
+}
+@media (max-width: 700px) {
+  .foot__col ul { display: flex !important; flex-wrap: wrap; gap: 0 18px !important; }
+  .foot__col li a { display: inline-block; padding: 7px 0 !important; min-height: 0 !important; }
+  .foot__grid { gap: 22px 20px; }
+  .foot__col h2 { margin-bottom: 4px; }
+  .foot__col:nth-child(2), .foot__col:nth-child(3) { grid-column: 1 / -1; }
+}
