@@ -679,3 +679,16 @@ main *, .foot *, .menu * { text-transform: none !important; }
   .hero--logo .hero__img { object-position: 52% 50%; }
   .about--v4 .about__grid { gap: 28px; }
 }
+
+/* phones: hero fills the screen again; the photo sits in a band that fades into black
+   top and bottom, so it isn't blown up to full height */
+@media (max-width: 700px) {
+  .hero--logo { min-height: 100svh; background: var(--ink); }
+  .hero--logo .hero__content { padding: 40px 16px; }
+  .hero--logo .hero__media {
+    inset: auto 0; top: 50%; height: 74%; translate: 0 -50%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+            mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  }
+  .hero--logo .hero__shade { background: rgba(13,9,7,.5); }
+}
