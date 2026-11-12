@@ -671,3 +671,11 @@ main *, .foot *, .menu * { text-transform: none !important; }
   .foot__col h2 { margin-bottom: 4px; }
   .foot__col:nth-child(2), .foot__col:nth-child(3) { grid-column: 1 / -1; }
 }
+
+/* phones: a shorter hero shows more of the photo (it's a wide banner, so full height crops hard) */
+@media (max-width: 700px) {
+  .hero--logo { min-height: 0; }
+  .hero--logo .hero__content { padding: 72px 16px 64px; }
+  .hero--logo .hero__img { object-position: 52% 50%; }
+  .about--v4 .about__grid { gap: 28px; }
+}

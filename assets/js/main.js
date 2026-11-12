@@ -189,7 +189,7 @@
     const small = innerWidth < 700;
     const spread = Math.min(innerWidth * 0.16, 220);
     gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.15 * k })
-      .fromTo('.hero__img', { scale: 1.14 }, { scale: 1.02, duration: 3 * k, ease: 'power2.out' }, 0)
+      .fromTo('.hero__img', { scale: small ? 1.05 : 1.14 }, { scale: small ? 1 : 1.02, duration: 3 * k, ease: 'power2.out' }, 0)
       .fromTo('.wm',
         { opacity: 0, x: i => (i - 2) * spread * 2.2, filter: small ? 'none' : 'blur(12px)' },
         { opacity: 1, x: 0, filter: small ? 'none' : 'blur(0px)', duration: 1.8 * k, stagger: { each: 0.06 * k, from: 'edges' } }, 0.25 * k)
