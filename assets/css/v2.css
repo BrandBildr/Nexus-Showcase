@@ -583,3 +583,6 @@ main *, .foot *, .menu * { text-transform: none !important; }
   .srow { grid-template-columns: minmax(0, 6fr) minmax(0, 4fr) clamp(120px, 10vw, 150px) 48px; padding-block: clamp(18px, 2vw, 26px); }
   .srow__img { aspect-ratio: 16 / 10; }
 }
+/* hero without the quick-links row: keep the logo centred, a little air below */
+.hero--logo .hero__content { padding-bottom: clamp(48px, 7vw, 96px); }
+.proof .clients { margin-bottom: clamp(40px, 5vw, 64px); }
