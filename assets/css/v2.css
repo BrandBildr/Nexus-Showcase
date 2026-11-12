@@ -596,21 +596,6 @@ main *, .foot *, .menu * { text-transform: none !important; }
   .case__facts dd { margin: 0 !important; text-align: right; font-size: .9rem !important; }
 }
 
-/* ================= footer on phones: compact ================= */
-@media (max-width: 700px) {
-  .foot { padding: 44px 0 calc(24px + 76px); } /* room for the quick contact bar */
-  .foot__grid { grid-template-columns: 1fr 1fr; gap: 28px 20px; padding-bottom: 28px; }
-  .foot__brand { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .foot__logo { width: 96px; }
-  .foot__tag { text-align: right; font-size: .68rem; line-height: 1.6; letter-spacing: .02em; font-weight: 600; }
-  .foot__col h2 { margin-bottom: 10px; font-size: .78rem; }
-  .foot__col ul { gap: 7px; font-size: .9rem; }
-  .foot__col:last-child { grid-column: 1 / -1; }
-  .foot__col:last-child ul { display: flex; flex-wrap: wrap; gap: 8px 18px; }
-  .foot__base { padding-top: 18px; font-size: .74rem; gap: 6px; flex-direction: column; }
-  .foot__credit { justify-content: flex-start; padding-top: 10px; }
-}
-
 /* ================= blog ================= */
 .blog { padding-block: clamp(56px, 7vw, 104px); }
 .blog__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(32px, 4vw, 48px) clamp(24px, 3vw, 40px); }
@@ -664,13 +649,6 @@ main *, .foot *, .menu * { text-transform: none !important; }
   .post__cta { padding: 20px; }
   .post__cta .btn { width: 100%; }
 }
-@media (max-width: 700px) {
-  .foot__col ul { display: flex !important; flex-wrap: wrap; gap: 0 18px !important; }
-  .foot__col li a { display: inline-block; padding: 7px 0 !important; min-height: 0 !important; }
-  .foot__grid { gap: 22px 20px; }
-  .foot__col h2 { margin-bottom: 4px; }
-  .foot__col:nth-child(2), .foot__col:nth-child(3) { grid-column: 1 / -1; }
-}
 
 /* phones: a shorter hero shows more of the photo (it's a wide banner, so full height crops hard) */
 @media (max-width: 700px) {
@@ -691,4 +669,50 @@ main *, .foot *, .menu * { text-transform: none !important; }
             mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
   }
   .hero--logo .hero__shade { background: rgba(13,9,7,.5); }
+}
+
+/* ================= footer ================= */
+.foot__logo-h, .foot__k { display: none; }
+
+@media (max-width: 700px) {
+  .foot { padding: 40px 0 calc(20px + 80px); }   /* clears the quick contact bar */
+  .foot__grid { grid-template-columns: 1fr 1fr; gap: 0; padding-bottom: 0; border-bottom: 0; }
+
+  /* brand: compact horizontal logo with the tagline beneath */
+  .foot__brand { grid-column: 1 / -1; display: block; padding-bottom: 28px; border-bottom: 1px solid var(--line-l); }
+  .foot__logo { display: none; }
+  .foot__logo-h { display: block; width: 132px; height: auto; }
+  .foot__tag { margin-top: 12px; font-size: .86rem; font-weight: 500; line-height: 1.5; letter-spacing: 0; color: var(--bone-70); text-align: left; }
+  .foot__tag span { display: inline; }
+
+  /* two even link columns */
+  .foot__col { padding: 26px 0 22px; }
+  .foot__col h2 { font-size: .74rem; font-weight: 600; color: var(--brass); margin-bottom: 8px; letter-spacing: 0; }
+  .foot__col ul { display: grid; gap: 0; font-size: .95rem; }
+  .foot__col li a { display: block; padding: 7px 0; color: var(--bone); }
+
+  /* contact: full-width rows, label left, detail right */
+  .foot__col--talk { grid-column: 1 / -1; padding: 0; border-top: 1px solid var(--line-l); }
+  .foot__col--talk h2 { display: none; }
+  .foot__col--talk li { border-bottom: 1px solid var(--line-l); }
+  .foot__col--talk li a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 15px 0; font-size: .95rem; }
+  .foot__col--talk li a::after { content: ""; width: 7px; height: 7px; flex: none; border-top: 1.5px solid var(--brass); border-right: 1.5px solid var(--brass); transform: rotate(45deg); margin-left: 4px; }
+  .foot__k { display: block; margin-right: auto; font-size: .82rem; color: var(--bone-70); }
+  .foot__col--talk li:nth-child(n+3) { display: none; }   /* WhatsApp and booking live in the quick bar */
+
+  /* legal: two short lines */
+  .foot__base { display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 16px; padding-top: 22px; font-size: .76rem; line-height: 1.55; color: rgba(251,251,249,.5); }
+  .foot__base p:first-child { max-width: 26ch; }
+  .foot__reg { display: block; }
+  .foot__base a { color: rgba(251,251,249,.75); white-space: nowrap; }
+  .foot__credit { justify-content: flex-start; padding-top: 14px; }
+  .foot__credit a { font-size: .7rem; letter-spacing: 0; }
+}
+@media (max-width: 700px) {
+  .foot__col--talk ul { display: block !important; width: 100%; }
+  .foot__col--talk li { width: 100%; }
+  .foot__col--talk li a { width: 100%; }
+  .foot__base { flex-direction: column; gap: 10px; }
+  .foot__base p:first-child { max-width: none; }
+  .foot__credit { padding-top: 16px; margin-top: 18px; border-top: 1px solid var(--line-l); }
 }
